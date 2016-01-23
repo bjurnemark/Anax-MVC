@@ -1,0 +1,45 @@
+/**
+ * Styles for my personalisation. Extends or replaces styles defined in the
+ * standard Anax files
+ */
+
+/* Clear all floats (clearfix) */
+.clear-floats {
+    clear: both;
+}
+
+/* Set colors in header */
+.sitetitle {
+    color: #00A;
+}
+
+.siteslogan {
+    color: #008;
+}
+
+/*
+ * Style footer
+ */
+#footer {
+    margin-top: 30px;
+    background-color: #00A;
+    color: #FFF;
+    padding: 1em 0;
+}
+
+.sitefooter {
+    font-size: 0.8em;
+    color: inherit;
+    padding: 0 1em;
+}
+
+/* Generic class to float elements to the right */
+.right {
+    float: right;
+}
+
+/* Make links more discrete */
+.discrete-link {
+    text-decoration: none;
+    color: inherit;
+}
