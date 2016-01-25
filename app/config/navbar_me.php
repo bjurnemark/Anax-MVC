@@ -23,6 +23,12 @@ return [
             'title' => 'Redovisning'
         ],
 
+        'os-discussion'  => [
+            'text'  => 'Win vs OS X',
+            'url'   => $this->di->get('url')->create('os-discussion'),
+            'title' => 'Win vs OS X'
+        ],
+
         'source'  => [
             'text'  => 'Källkod',
             'url'   => $this->di->get('url')->create('source'),

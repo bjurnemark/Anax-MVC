@@ -16,6 +16,13 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 // Set the theme
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 
+// Add the comment controller to the DI
+$di->set('CommentController', function() use ($di) {
+    $controller = new Phpmvc\Comment\CommentController();
+    $controller->setDI($di);
+    return $controller;
+});
+
 // Add routes
 $app->router->add('', function() use ($app) {
     $app->theme->setTitle("Om Stefan");
@@ -46,6 +53,26 @@ $app->router->add('redovisning', function() use ($app) {
         'byline'  => $byline,
     ]);
 
+});
+
+// Add a page with comments
+$app->router->add('os-discussion', function() use ($app) {
+
+    $app->theme->setTitle("Flame Bait");
+    $app->views->add('comment/index');
+
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'view',
+    ]);
+
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'web'       => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+    ]);
 });
 
 $app->router->add('source', function() use ($app) {

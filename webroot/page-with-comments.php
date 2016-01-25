@@ -4,23 +4,23 @@
  *
  */
 // Include the essential settings.
-require __DIR__.'/config.php';
+require __DIR__.'/config_with_app.php';
 
+// Use clean URL:s
+$app->url->setUrlType(\Anax\Url\CUrl::URL_CLEAN);
 
-// Create services and inject into the app.
-$di  = new \Anax\DI\CDIFactoryDefault();
+// Set the navbar
+$app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 
+// Set the theme
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
+
+// Add the comment controller to the DI
 $di->set('CommentController', function() use ($di) {
     $controller = new Phpmvc\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
 });
-
-$app = new \Anax\Kernel\CAnax($di);
-
-// Set the theme
-$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
-
 
 // Home route
 $app->router->add('', function() use ($app) {
