@@ -1,13 +1,13 @@
-<?php 
+<?php
 /**
  * This is a Anax pagecontroller.
  *
  */
 // Include the essential settings.
-require __DIR__.'/config.php'; 
+require __DIR__.'/config.php';
 
 
-// Create services and inject into the app. 
+// Create services and inject into the app.
 $di  = new \Anax\DI\CDIFactoryDefault();
 
 $di->set('CommentController', function() use ($di) {
@@ -18,6 +18,8 @@ $di->set('CommentController', function() use ($di) {
 
 $app = new \Anax\Kernel\CAnax($di);
 
+// Set the theme
+$app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 
 
 // Home route

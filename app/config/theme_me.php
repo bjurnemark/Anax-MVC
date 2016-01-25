@@ -72,7 +72,7 @@ return [
         'title_append' => ' | phpmvc',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar_me.css', 'css/style_me.css'],
+        'stylesheets' => ['css/style.css', 'css/navbar_me.css', 'css/style_me.css', 'css/comments.css'],
 
         // Inline style
         'style' => null,
