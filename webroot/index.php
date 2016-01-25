@@ -56,10 +56,15 @@ $app->router->add('redovisning', function() use ($app) {
 });
 
 // Add a page with comments
-$app->router->add('os-discussion', function() use ($app) {
+$app->router->add('linux', function() use ($app) {
+    $app->theme->setTitle("Linux");
 
-    $app->theme->setTitle("Flame Bait");
-    $app->views->add('comment/index');
+    $content = $app->fileContent->get('linux.md');
+    $content = $app->textFilter->doFilter($content, 'markdown');
+
+    $app->views->add('comment/index', [
+        'content' => $content,
+    ]);
 
     $app->dispatcher->forward([
         'controller' => 'comment',

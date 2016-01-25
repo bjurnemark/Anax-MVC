@@ -23,10 +23,10 @@ return [
             'title' => 'Redovisning'
         ],
 
-        'os-discussion'  => [
-            'text'  => 'Win vs OS X',
-            'url'   => $this->di->get('url')->create('os-discussion'),
-            'title' => 'Win vs OS X'
+        'linux'  => [
+            'text'  => 'Linux',
+            'url'   => $this->di->get('url')->create('linux'),
+            'title' => 'Linux'
         ],
 
         'source'  => [
