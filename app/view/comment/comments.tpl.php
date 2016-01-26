@@ -12,7 +12,7 @@
 </div>
 <div class='comment-content'><?=$comment['content']?></div>
 <div class='comment-links'>
-    <span class='discrete-link'>Radera: <?=$id?></span> |
+    <a href="<?=$this->url->create('my_comment/remove/'. $comment['page_id'] . '/' . $comment['timestamp'])?>" class='discrete-link'>Radera</a> |
     <span class='discrete-link'>Redigera: <?=$id?></span>
 </div>
 </div>

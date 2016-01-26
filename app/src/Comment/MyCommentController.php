@@ -75,6 +75,20 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
     }
 
 
+    /**
+     * Remove a specific comment.
+     *
+     * @return void
+     */
+    public function removeAction($pageId, $timestamp)
+    {
+
+        $comments = new \Bjurnemark\Comment\MyCommentsInSession();
+        $comments->setDI($this->di);
+
+        $comments->remove($pageId, $timestamp);
+        $this->response->redirect($_SERVER['HTTP_REFERER']);
+    }
 
     /**
      * Remove all comments.
