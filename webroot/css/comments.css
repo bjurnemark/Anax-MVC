@@ -5,6 +5,7 @@
 .comment-name {
     font-weight: bold;
     font-size: 1.2em;
+    text-decoration: none;
 }
 
 .comment-time {

@@ -6,14 +6,12 @@
 <div class='comments'>
 <?php foreach ($comments as $id => $comment) : ?>
 <div class='comment'>
-<div class='comment-name'><?=$comment['name']?>
-    <span class='comment-mail'><?=$comment['mail']?></span>
-    <span class='comment-time'><?=$comment['timestamp']?></span>
-</div>
+<a class='comment-name' href="mailto:<?=$comment['mail']?>"><?=$comment['name']?></a>
+<span class='comment-time'> <?=$comment['timestamp']?></span>
 <div class='comment-content'><?=$comment['content']?></div>
 <div class='comment-links'>
     <a href="<?=$this->url->create('my_comment/remove/'. $comment['page_id'] . '/' . $comment['timestamp'])?>" class='discrete-link'>Radera</a> |
-    <span class='discrete-link'>Redigera: <?=$id?></span>
+    <a href="<?=$this->url->create('my_comment/edit/'. $comment['page_id'] . '/' . $comment['timestamp'])?>" class='discrete-link'>Redigera</a>
 </div>
 </div>
 <?php endforeach; ?>
