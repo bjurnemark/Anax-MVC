@@ -1,6 +1,6 @@
 <hr>
 
-<h2>Comments</h2>
+<h2>Kommentarer</h2>
 
 <?php if (is_array($comments)) : ?>
 <div class='comments'>
@@ -12,7 +12,7 @@
 </div>
 <div class='comment-content'><?=$comment['content']?></div>
 <div class='comment-links'>
-    <span class='discrete-link'>Radera: <?=$id?></span>
+    <span class='discrete-link'>Radera: <?=$id?></span> |
     <span class='discrete-link'>Redigera: <?=$id?></span>
 </div>
 </div>

@@ -1,8 +1,29 @@
+.comment {
+    margin-bottom: 2em;
+}
+
 .comment-name {
     font-weight: bold;
+    font-size: 1.2em;
 }
 
 .comment-time {
     color: #999;
     font-size: 0.8em;
+}
+
+.comment-content {
+    margin: 1em;
+}
+
+.comment-links {
+    color: #999;
+}
+
+.comment-form textarea {
+    width: 60%;
+}
+
+.comment-form input[type=text] {
+    width: 40%;
 }

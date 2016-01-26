@@ -17,8 +17,8 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 
 // Add the comment controller to the DI
-$di->set('CommentController', function() use ($di) {
-    $controller = new Phpmvc\Comment\CommentController();
+$di->set('MyCommentController', function() use ($di) {
+    $controller = new Bjurnemark\Comment\MyCommentController();
     $controller->setDI($di);
     return $controller;
 });
@@ -59,24 +59,28 @@ $app->router->add('redovisning', function() use ($app) {
 $app->router->add('linux', function() use ($app) {
     $app->theme->setTitle("Linux");
 
+    // Add the base view/content for this page
     $content = $app->fileContent->get('linux.md');
     $content = $app->textFilter->doFilter($content, 'markdown');
-
     $app->views->add('comment/index', [
         'content' => $content,
     ]);
 
+    // Run MyCommentController/viewByKeyAction (adds comments-view)
     $app->dispatcher->forward([
-        'controller' => 'comment',
-        'action'     => 'view',
+        'controller' => 'my_comment',
+        'action'     => 'view_by_key',
+        'params'     => ['linux'],
     ]);
 
+    // Add the comment form view
     $app->views->add('comment/form', [
         'mail'      => null,
         'web'       => null,
         'name'      => null,
         'content'   => null,
         'output'    => null,
+        'page_id'   => 'linux',
     ]);
 });
 
