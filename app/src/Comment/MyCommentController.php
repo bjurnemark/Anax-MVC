@@ -30,7 +30,7 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
 
         // Make a selection of comments
         $subset = array();
-        foreach ($all as $id => $comment) {
+        foreach ($all as $comment) {
             if ($comment['page_id'] == $key) {
                 $subset[] = $comment;
             }

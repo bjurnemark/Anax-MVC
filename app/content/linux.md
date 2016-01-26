@@ -4,4 +4,4 @@ Kan det finnas något rimligt skäl att använda ett annat operativsystem än Li
 
 (Föreställ er mer flame bait här ...)
 
-Är du en av de vilsna själar som fortfarande använder Windows eller OS X? Vill du instämma helhjärtat? Lämna dina synpunkter i kommentarsfältet.
+Är du en av de vilsna själar som fortfarande använder Windows eller OS X? Har du sett ljuset och vill instämma helhjärtat? Lämna dina synpunkter i kommentarsfältet.

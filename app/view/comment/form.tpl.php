@@ -1,6 +1,6 @@
 <div class='comment-form'>
     <form method=post>
-        <input type=hidden name="redirect" value="<?=$this->url->create('')?>">
+        <input type=hidden name="redirect" value="<?=$this->url->create($page_id)?>">
         <fieldset>
         <legend>Skapa en kommentar</legend>
         <p><label>Kommentar:<br/><textarea name='content'><?=$content?></textarea></label></p>
