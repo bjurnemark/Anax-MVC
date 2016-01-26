@@ -60,7 +60,6 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
         $comment = [
             'content'   => $this->request->getPost('content'),
             'name'      => $this->request->getPost('name'),
-            'web'       => $this->request->getPost('web'),
             'mail'      => $this->request->getPost('mail'),
             'page_id'   => $this->request->getPost('page_id'),
             'timestamp' => time(),

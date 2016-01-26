@@ -4,9 +4,10 @@
         <fieldset>
         <legend>Skapa en kommentar</legend>
         <p><label>Kommentar:<br/><textarea name='content'><?=$content?></textarea></label></p>
-        <p><label>Namn:<br/><input type='text' name='name' value='<?=$name?>'/></label></p>
-        <p><label>Hemsida:<br/><input type='text' name='web' value='<?=$web?>'/></label></p>
-        <p><label>E-post:<br/><input type='text' name='mail' value='<?=$mail?>'/></label></p>
+        <p>
+            <div class='short-field'><label>Namn:<br/><input type='text' name='name' value='<?=$name?>'/></label></div>
+            <div class='short-field'><label>E-post:<br/><input type='text' name='mail' value='<?=$mail?>'/></label></div>
+        </p>
         <input type='hidden' name='page_id' value='<?=$page_id?>'/>
         <p class=buttons>
             <input type='submit' name='doCreate' value='Kommentera' onClick="this.form.action = '<?=$this->url->create('my_comment/add')?>'"/>

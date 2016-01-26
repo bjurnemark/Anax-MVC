@@ -21,9 +21,22 @@
 }
 
 .comment-form textarea {
-    width: 60%;
+    width: 600px;
+    margin: 0;
+    padding: 0;
 }
 
 .comment-form input[type=text] {
-    width: 40%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.short-field {
+    display: inline-block;
+    width: 291px;
+}
+
+.short-field:first-of-type {
+    padding-right: 16px;
 }

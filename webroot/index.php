@@ -76,7 +76,6 @@ $app->router->add('linux', function() use ($app) {
     // Add the comment form view
     $app->views->add('comment/form', [
         'mail'      => null,
-        'web'       => null,
         'name'      => null,
         'content'   => null,
         'output'    => null,
