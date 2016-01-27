@@ -84,7 +84,7 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
         $comments->setDI($this->di);
 
         $comments->remove($pageId, $timestamp);
-        $this->response->redirect($_SERVER['HTTP_REFERER']);
+        $this->response->redirect($this->request->getServer('HTTP_REFERER'));
     }
 
 
