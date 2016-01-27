@@ -52,7 +52,21 @@ $app->router->add('redovisning', function() use ($app) {
         'content' => $content,
         'byline'  => $byline,
     ]);
+});
 
+$app->router->add('discuss', function() use ($app) {
+    $app->theme->setTitle("Diskussions-sidor");
+
+    $content = $app->fileContent->get('diskussion.md');
+    $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+
+    $byline  = $app->fileContent->get('byline.md');
+    $byline  = $app->textFilter->doFilter($byline, 'shortcode, markdown');
+
+    $app->views->add('me/page', [
+        'content' => $content,
+        'byline'  => $byline,
+    ]);
 });
 
 // Add pages with comments

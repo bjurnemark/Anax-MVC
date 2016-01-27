@@ -26,7 +26,7 @@ return [
         // Heading menu item for submenu
         'discuss'  => [
             'text'  => 'Diskussions-sidor',
-            'url'   => $this->di->get('url')->create('submenu'),
+            'url'   => $this->di->get('url')->create('discuss'),
             'title' => 'Diskussions-sidor för olika ämnen',
 
             // Here we add the submenu, with individual pages
