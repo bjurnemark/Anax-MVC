@@ -21,6 +21,9 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
 
         $subset = $comments->findByKey($key);
 
+        // Add readable time durations
+        $subset = $comments->addReadableTime($subset);
+
         $this->views->add('comment/comments', [
             'comments' => $subset,
         ]);

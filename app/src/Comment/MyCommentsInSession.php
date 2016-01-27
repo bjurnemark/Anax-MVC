@@ -18,22 +18,32 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
     public function findByKey($key)
     {
         // Get the entire set of comments
-        $all = $this->findAll();
+        $comments = $this->findAll();
 
-        // TODO: Use unset instead
-        // TODO: Move timestamp to separate function
-        // Make a selection
-        $subset = array();
-        foreach ($all as $comment) {
-            if ($comment['page_id'] == $key) {
-                $tdiff = $this->timeElapsedString($comment['timestamp']);
-                $comment['timediff'] = $tdiff;
-                $subset[] = $comment;
+        // Remove comments that doesn't match key
+        foreach ($comments as $id => $comment) {
+            if ($comment['page_id'] != $key) {
+                unset($comments[$id]);
             }
         }
-        return $subset;
+        return $comments;
     }
 
+
+    /**
+     * Add a readable time duration to each comment.
+     *
+     * @param array $comments the set of comments to process
+     * @return array with the updated comments
+     */
+    public function addReadableTime($comments)
+    {
+        foreach ($comments as $id => $comment) {
+            $tdiff = $this->timeElapsedString($comment['timestamp']);
+            $comments[$id]['timediff'] = $tdiff;
+        }
+        return $comments;
+    }
 
 
     /**
