@@ -16,21 +16,10 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
      */
     public function viewByKeyAction($key=null)
     {
-        $comments = new \Phpmvc\Comment\CommentsInSession();
+        $comments = new \Bjurnemark\Comment\MyCommentsInSession();
         $comments->setDI($this->di);
 
-        // Get the entire set of comments
-        $all = $comments->findAll();
-
-        // Make a selection of comments
-        $subset = array();
-        foreach ($all as $comment) {
-            if ($comment['page_id'] == $key) {
-                $tdiff = $this->timeElapsedString($comment['timestamp']);
-                $comment['timediff'] = $tdiff;
-                $subset[] = $comment;
-            }
-        }
+        $subset = $comments->findByKey($key);
 
         $this->views->add('comment/comments', [
             'comments' => $subset,
@@ -150,48 +139,5 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
         $comments->replace($replacement, $orgTimestamp);
 
         $this->response->redirect($this->request->getPost('redirect'));
-    }
-
-
-    /**
-    * Create readable representation of elapsed time
-    *
-    * @param string $ptime the timestamp of the event
-    * @return string the representation of the time elapsed since timestamp
-    * @see http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
-    */
-    private function timeElapsedString($ptime)
-    {
-        $etime = time() - $ptime;
-
-        if ($etime < 1)
-        {
-            return '0 seconds';
-        }
-
-        $units = array( 365 * 24 * 60 * 60  =>  'år',
-                         30 * 24 * 60 * 60  =>  'månad',
-                              24 * 60 * 60  =>  'dag',
-                                   60 * 60  =>  'timme',
-                                        60  =>  'minut',
-                                         1  =>  'sekund'
-                    );
-        $unitsPlural = array( 'år'     => 'år',
-                              'månad'  => 'månader',
-                              'dag'    => 'dagar',
-                              'timme'  => 'timmar',
-                              'minut'  => 'minuter',
-                              'sekund' => 'sekunder'
-                    );
-
-        foreach ($units as $secs => $str)
-        {
-            $diff = $etime / $secs;
-            if ($diff >= 1)
-            {
-                $roundedDiff = round($diff);
-                return $roundedDiff . ' ' . ($roundedDiff > 1 ? $unitsPlural[$str] : $str) . ' sedan';
-            }
-        }
     }
 }

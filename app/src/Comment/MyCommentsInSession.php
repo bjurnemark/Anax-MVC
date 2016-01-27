@@ -8,6 +8,34 @@ namespace Bjurnemark\Comment;
  */
 class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
 {
+
+    /**
+     * Find and return a subset of comments.
+     *
+     * @param string $key the key (page_id) to search for
+     * @return array with the comments matching the key.
+     */
+    public function findByKey($key)
+    {
+        // Get the entire set of comments
+        $all = $this->findAll();
+
+        // TODO: Use unset instead
+        // TODO: Move timestamp to separate function
+        // Make a selection
+        $subset = array();
+        foreach ($all as $comment) {
+            if ($comment['page_id'] == $key) {
+                $tdiff = $this->timeElapsedString($comment['timestamp']);
+                $comment['timediff'] = $tdiff;
+                $subset[] = $comment;
+            }
+        }
+        return $subset;
+    }
+
+
+
     /**
      * Remove a specific comment
      *
@@ -17,7 +45,7 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
      */
     public function remove($pageId, $timestamp)
     {
-        $comments = $this->session->get('comments', []);
+        $comments = $this->findAll();
         foreach ($comments as $id => $comment) {
             if ($comment['page_id'] == $pageId && $comment['timestamp'] == $timestamp) {
                 unset($comments[$id]);
@@ -58,16 +86,57 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
     {
         $comments = $this->session->get('comments', []);
         foreach ($comments as $id => $comment) {
-            // Replace values in-place in comments array to maintain the order of comments
-            if ($comments[$id]['page_id'] == $replacement['page_id'] && $comments[$id]['timestamp'] == $orgTimestamp) {
+            if ($comment['page_id'] == $replacement['page_id'] && $comment['timestamp'] == $orgTimestamp) {
+                // Replace values in-place in array to maintain the order of comments
                 $comments[$id]['content']   = $replacement['content'];
                 $comments[$id]['name']      = $replacement['name'];
                 $comments[$id]['mail']      = $replacement['mail'];
-                $comments[$id]['page_id']   = $replacement['page_id'];
                 $comments[$id]['ip']        = $replacement['ip'];
                 $comments[$id]['timestamp'] = $replacement['timestamp'];
                 $this->session->set('comments', $comments);
                 return;
+            }
+        }
+    }
+
+    /**
+    * Create readable representation of elapsed time
+    *
+    * @param string $ptime the timestamp of the event
+    * @return string the representation of the time elapsed since timestamp
+    * @see http://stackoverflow.com/questions/1416697/converting-timestamp-to-time-ago-in-php-e-g-1-day-ago-2-days-ago
+    */
+    private function timeElapsedString($ptime)
+    {
+        $etime = time() - $ptime;
+
+        if ($etime < 1)
+        {
+            return '0 seconds';
+        }
+
+        $units = array( 365 * 24 * 60 * 60  =>  'år',
+                         30 * 24 * 60 * 60  =>  'månad',
+                              24 * 60 * 60  =>  'dag',
+                                   60 * 60  =>  'timme',
+                                        60  =>  'minut',
+                                         1  =>  'sekund'
+                    );
+        $unitsPlural = array( 'år'     => 'år',
+                              'månad'  => 'månader',
+                              'dag'    => 'dagar',
+                              'timme'  => 'timmar',
+                              'minut'  => 'minuter',
+                              'sekund' => 'sekunder'
+                    );
+
+        foreach ($units as $secs => $str)
+        {
+            $diff = $etime / $secs;
+            if ($diff >= 1)
+            {
+                $roundedDiff = round($diff);
+                return $roundedDiff . ' ' . ($roundedDiff > 1 ? $unitsPlural[$str] : $str) . ' sedan';
             }
         }
     }
