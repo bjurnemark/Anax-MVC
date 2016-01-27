@@ -55,7 +55,7 @@ $app->router->add('redovisning', function() use ($app) {
 
 });
 
-// Add a page with comments
+// Add pages with comments
 $app->router->add('linux', function() use ($app) {
     $app->theme->setTitle("Linux");
 
@@ -80,6 +80,33 @@ $app->router->add('linux', function() use ($app) {
         'content'   => null,
         'output'    => null,
         'page_id'   => 'linux',
+    ]);
+});
+
+$app->router->add('ramverk', function() use ($app) {
+    $app->theme->setTitle("Ramverk");
+
+    // Add the base view/content for this page
+    $content = $app->fileContent->get('ramverk.md');
+    $content = $app->textFilter->doFilter($content, 'markdown');
+    $app->views->add('comment/index', [
+        'content' => $content,
+    ]);
+
+    // Run MyCommentController/viewByKeyAction (adds comments-view)
+    $app->dispatcher->forward([
+        'controller' => 'my_comment',
+        'action'     => 'view_by_key',
+        'params'     => ['ramverk'],
+    ]);
+
+    // Add the comment form view
+    $app->views->add('comment/form', [
+        'mail'      => null,
+        'name'      => null,
+        'content'   => null,
+        'output'    => null,
+        'page_id'   => 'ramverk',
     ]);
 });
 

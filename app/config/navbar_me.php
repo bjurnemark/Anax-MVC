@@ -23,10 +23,30 @@ return [
             'title' => 'Redovisning'
         ],
 
-        'linux'  => [
-            'text'  => 'Linux',
-            'url'   => $this->di->get('url')->create('linux'),
-            'title' => 'Linux'
+        // Heading menu item for submenu
+        'discuss'  => [
+            'text'  => 'Diskussions-sidor',
+            'url'   => $this->di->get('url')->create('submenu'),
+            'title' => 'Diskussions-sidor för olika ämnen',
+
+            // Here we add the submenu, with individual pages
+            'submenu' => [
+
+                'items' => [
+
+                    'linux'  => [
+                        'text'  => 'Linux',
+                        'url'   => $this->di->get('url')->create('linux'),
+                        'title' => 'Linux'
+                    ],
+
+                    'frameworks'  => [
+                        'text'  => 'Ramverk',
+                        'url'   => $this->di->get('url')->create('ramverk'),
+                        'title' => 'Ramverk eller ramvärk'
+                    ],
+                ],
+            ],
         ],
 
         'source'  => [
