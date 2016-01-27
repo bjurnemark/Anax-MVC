@@ -57,7 +57,33 @@ kursen.
 
 
 Kmom02: Kontroller och Modeller
-------------------------------------
+-------------------------------
+Det här var ett bra kursmoment, tycker jag. Att själv lägga till lite funktionalitet
+hjälper verkligen förståelsen för hur saker och ting hänger samman i ramverket.
+
+Artiklarna om Phalcon var också bra och gav lite mer förklaringar till strukturen
+och till de olika komponenternas roller i ramverket.
+
+Jag valde att flytta in hanteringen av sidorna med kommentarer i index.php för
+att fortsatt bara ha en frontcontroller. För kommentarsklasserna valde jag att
+göra egna klasser (MyCommentController och MyCommentsInSession) som ligger i
+appen och är underklasser till standard-versionerna i Phpmvc\Comment. På så sätt
+kan jag hämta eventuella uppdateringar till Phpmvc\Comment utan att riskera att
+skriva över mina ändringar.
+
+Det kändes inte självklart om kommentarsfunktionerna skulle ligga i appen eller
+i ramverket men jag landade i att det inte riktigt platsar som en standardkomponent
+i ett ramverk och valde att lägga till klasserna i appen istället.
+
+
+###Hur känns det att jobba med Composer?
+Det känns som ett smidigt sätt att hantera beroenden och externa paket, i synnerhet
+för större projekt som kan ha många beroenden.
+###Vad tror du om de paket som finns i Packagist, är det något du kan tänka dig att använda och hittade du något spännande att inkludera i ditt ramverk?
+###Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?
+###Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?
+
+
 
 Kmom03: Bygg ett eget tema
 ------------------------------------
