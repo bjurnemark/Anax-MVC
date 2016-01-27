@@ -8,9 +8,6 @@ namespace Bjurnemark\Comment;
  */
 class MyCommentController extends \Phpmvc\Comment\CommentController
 {
-
-
-
     /**
      * View comments for a given key.
      *
@@ -19,9 +16,6 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
      */
     public function viewByKeyAction($key=null)
     {
-        // Shortcut to clear all comments for testing
-        // $this->session->set('comments', []);
-
         $comments = new \Phpmvc\Comment\CommentsInSession();
         $comments->setDI($this->di);
 
@@ -47,6 +41,7 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
 
     /**
      * Add a comment.
+     * Override base class version to store page_id
      *
      * @return void
      */
@@ -85,13 +80,13 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
      */
     public function removeAction($pageId, $timestamp)
     {
-
         $comments = new \Bjurnemark\Comment\MyCommentsInSession();
         $comments->setDI($this->di);
 
         $comments->remove($pageId, $timestamp);
         $this->response->redirect($_SERVER['HTTP_REFERER']);
     }
+
 
     /**
      * Display a form to edit a comment.
@@ -126,7 +121,7 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
 
 
     /**
-     * Replace a comment.
+     * Replace an existing comment with a new version.
      *
      * @return void
      */
@@ -199,27 +194,4 @@ class MyCommentController extends \Phpmvc\Comment\CommentController
             }
         }
     }
-
-
-
-    /**
-     * Remove all comments.
-     *
-     * @return void
-     */
-    // public function removeAllAction()
-    // {
-    //     $isPosted = $this->request->getPost('doRemoveAll');
-    //
-    //     if (!$isPosted) {
-    //         $this->response->redirect($this->request->getPost('redirect'));
-    //     }
-    //
-    //     $comments = new \Phpmvc\Comment\CommentsInSession();
-    //     $comments->setDI($this->di);
-    //
-    //     $comments->deleteAll();
-    //
-    //     $this->response->redirect($this->request->getPost('redirect'));
-    // }
 }

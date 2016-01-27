@@ -8,9 +8,6 @@ namespace Bjurnemark\Comment;
  */
 class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
 {
-
-
-
     /**
      * Remove a specific comment
      *
@@ -30,6 +27,7 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
         }
     }
 
+
     /**
      * Get a specific comment
      *
@@ -48,8 +46,9 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
         return null;
     }
 
+
     /**
-     * Replace a specific comment
+     * Replace a comment with an updated version
      *
      * @param array $replacement with all details.
      * @param string $orgTimestamp the original timestamp of the comment
@@ -67,47 +66,9 @@ class MyCommentsInSession extends \Phpmvc\Comment\CommentsInSession
                 $comments[$id]['page_id']   = $replacement['page_id'];
                 $comments[$id]['ip']        = $replacement['ip'];
                 $comments[$id]['timestamp'] = $replacement['timestamp'];
+                $this->session->set('comments', $comments);
+                return;
             }
         }
-        $this->session->set('comments', $comments);
-        return null;
     }
-
-    /**
-     * Add a new comment.
-     *
-     * @param array $comment with all details.
-     *
-     * @return void
-     */
-    // public function add($comment)
-    // {
-    //     $comments = $this->session->get('comments', []);
-    //     $comments[] = $comment;
-    //     $this->session->set('comments', $comments);
-    // }
-
-
-
-    /**
-     * Find and return all comments.
-     *
-     * @return array with all comments.
-     */
-    // public function findAll()
-    // {
-    //     return $this->session->get('comments', []);
-    // }
-
-
-
-    /**
-     * Delete all comments.
-     *
-     * @return void
-     */
-    // public function deleteAll()
-    // {
-    //     $this->session->set('comments', []);
-    // }
 }
