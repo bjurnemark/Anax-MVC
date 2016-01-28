@@ -58,44 +58,64 @@ kursen.
 
 Kmom02: Kontroller och Modeller
 -------------------------------
-Det här var ett bra kursmoment, tycker jag. Att själv lägga till lite funktionalitet
+Det här var ett givande kursmoment. Att själv lägga till funktionalitet
 hjälper verkligen förståelsen för hur saker och ting hänger samman i ramverket.
 
-Artiklarna om Phalcon var också bra och gav lite mer förklaringar till strukturen
-och till de olika komponenternas roller i ramverket.
+Artiklarna om Phalcon med förklaringar av ramverkets struktur och komponenternas
+roller var också bra. Förklaringarna var tydligare än för Anax-MVC och eftersom
+ramverken är snarlika hjälper det förståelsen för Anax också.
 
-Jag valde att flytta in hanteringen av sidorna med kommentarer i index.php för
+Själva arbetet med uppgiften gick smidigt. Det var inga steg som jag fastnade på.
+Svårigheterna var i första hand att förstå hur anropen via dispatchern fungerar
+och hur de olika autoloader-funktionerna hittar sina klasser. Det la jag en del
+tid på att reda ut för mig själv.
+
+Jag valde att flytta in hanteringen av kommentarssidorna i `index.php` för
 att fortsatt bara ha en frontcontroller. För kommentarsklasserna valde jag att
-göra egna klasser (MyCommentController och MyCommentsInSession) som ligger i
-appen och är underklasser till standard-versionerna i Phpmvc\Comment. På så sätt
-kan jag hämta eventuella uppdateringar till Phpmvc\Comment utan att riskera att
+göra egna klasser (`MyCommentController` och `MyCommentsInSession`) som ligger i
+appen och är underklasser till standard-versionerna i `Phpmvc\Comment`. På så sätt
+kan jag hämta eventuella uppdateringar till `Phpmvc\Comment` utan att riskera att
 skriva över mina ändringar.
 
-Det kändes inte självklart om kommentarsfunktionerna skulle ligga i appen eller
-i ramverket men jag landade i att det inte riktigt platsar som en standardkomponent
-i ett ramverk och valde att lägga till klasserna i appen istället.
+Det var inte självklart om kommentarsfunktionerna skulle ligga i appen eller
+ramverket men jag landade i att de inte platsar som standardkomponent
+i ramverket och valde att lägga dem i appen istället.
 
 
 ###Hur känns det att jobba med Composer?
-Det känns som ett smidigt sätt att hantera beroenden och externa paket, i synnerhet
-för större projekt som kan ha många beroenden.
-###Vad tror du om de paket som finns i Packagist, är det något du kan tänka dig att använda och hittade du något spännande att inkludera i ditt ramverk?
-###Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?
-###Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?
+Det är ett smidigt sätt att hantera beroenden och externa paket, i synnerhet
+för större projekt som kan ha många beroenden och beroenden i flera led.
 
+###Vad tror du om de paket som finns i Packagist, är det något du kan tänka dig att använda och hittade du något spännande att inkludera i ditt ramverk?
+Jag har inte lagt särskilt mycket tid på att titta runt bland paketen, men det är
+en god idé att återanvända befintliga lösningar framför att implementera allt från grunden.
+
+Det blir också vanligare och mer accepterat (även inom företag) att man bygger lösningar genom att använda externa komponenter och att programmering mer handlar om att få
+komponenter att fungera tillsammans än att bygga hela egna lösningar. 
+
+###Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?
+Jag tror jag har förstått det. När jag hade implementerat min lösning förstod
+jag inte varför det faktiskt fungerade i alla flöden så jag satte mig med
+papper och penna och gick igenom de flöden jag var osäker på. Läste även om delar
+av artiklarna om Anax-MVC från Kmom01 och Kmom02 och förstod sammanhangen bättre nu.
+
+###Hittade du svagheter i koden som följde med phpmvc/comment? Kunde du förbättra något?
+Nej, jag såg inte några direkta svagheter men har gjort en egen klass för att
+bygga på med hantering av separata kommentarsflöden samt redigering & radering
+av enskilda kommentarer.
 
 
 Kmom03: Bygg ett eget tema
-------------------------------------
+--------------------------
 
 Kmom04: Databasdrivna modeller
-------------------------------------
+------------------------------
 
 Kmom05: Bygg ut ramverket
-------------------------------------
+-------------------------
 
 Kmom06: Verktyg och CI
-------------------------------------
+----------------------
 
 Kmom07/10: Projekt och examination
-------------------------------------
+----------------------------------
