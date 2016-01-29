@@ -17,11 +17,9 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar-grid.php');
 $app->theme->configure(ANAX_APP_PATH . 'config/theme-grid.php');
 
 // Add routes
-$app->router->add('', function() use ($app) {
-    $app->theme->setVariable('title', "Hello World Pagecontroller")
-           ->setVariable('main', "
-    <h1>Ett nytt tema</h1>
-    <p>Här kommer det nya temat</p>");
+$app->router->add('theme', function() use ($app) {
+    $app->theme->setTitle("Testa att bygga ett tema");
+    $app->views->addString("<h1>Ett nytt tema</h1> <p>Testsidor för att bygga ett tema</p>", 'main');
 
 });
 
@@ -44,6 +42,28 @@ $app->router->add('regioner', function() use ($app) {
                ->addString('footer-col-3', 'footer-col-3')
                ->addString('footer-col-4', 'footer-col-4');
 
+});
+
+
+$app->router->add('typography', function() use ($app) {
+
+    $app->theme->setTitle("Typografi");
+
+    $content = $app->fileContent->get('typography.html');
+    $app->views->addString($content, 'main');
+    $app->views->addString($content, 'sidebar');
+});
+
+
+$app->router->add('font-awesome', function() use ($app) {
+
+    $app->theme->setTitle("Testa font-awesome");
+
+    $content = $app->fileContent->get('font-awesome.html');
+    $sidebar = $app->fileContent->get('font-awesome-side.html');
+
+    $app->views->addString($content, 'main');
+    $app->views->addString($sidebar, 'sidebar');
 });
 
 $app->router->handle();

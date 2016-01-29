@@ -13,7 +13,7 @@ return [
 
         'home'  => [
             'text'  => 'Tema',
-            'url'   => $this->di->get('url')->create(''),
+            'url'   => $this->di->get('url')->create('theme'),
             'title' => 'Tema'
         ],
 
@@ -22,7 +22,20 @@ return [
             'url'   => $this->di->get('url')->create('regioner'),
             'title' => 'Regioner'
         ],
+
+        'typography'  => [
+            'text'  => 'Typografi',
+            'url'   => $this->di->get('url')->create('typography'),
+            'title' => 'Typografi'
+        ],
+
+        'font-awesome'  => [
+            'text'  => 'Testa font-awesome',
+            'url'   => $this->di->get('url')->create('font-awesome'),
+            'title' => 'Testa font-awesome'
+        ],
     ],
+
 
 
 
