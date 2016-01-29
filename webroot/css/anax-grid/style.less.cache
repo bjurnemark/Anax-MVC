@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:42722:"html {
+a:4:{s:4:"root";s:10:"style.less";s:8:"compiled";s:44216:"html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -445,11 +445,9 @@ hr {
   margin: 22px auto;
 }
 #wrapper {
-  background: url(grid_12_60_20.png) center -7px repeat-y;
-  overflow: hidden;
-  width: 960px;
   margin: 0 auto;
   padding: 10px 0;
+  max-width: 960px;
 }
 #header {
   position: relative;
@@ -540,22 +538,22 @@ hr {
 #footer {
   display: inline;
   float: left;
-  width: 940px;
-  margin: 0 10px;
+  width: 97.916666666667%;
+  margin: 0 1.0416666666667%;
   margin-bottom: 22px;
 }
 #main {
   display: inline;
   float: left;
-  width: 620px;
-  margin: 0 10px;
+  width: 64.583333333333%;
+  margin: 0 1.0416666666667%;
   margin-bottom: 22px;
 }
 #sidebar {
   display: inline;
   float: left;
-  width: 300px;
-  margin: 0 10px;
+  width: 31.25%;
+  margin: 0 1.0416666666667%;
   margin-bottom: 22px;
 }
 #featured-1,
@@ -566,8 +564,8 @@ hr {
 #triptych-3 {
   display: inline;
   float: left;
-  width: 300px;
-  margin: 0 10px;
+  width: 31.25%;
+  margin: 0 1.0416666666667%;
   margin-bottom: 22px;
 }
 #footer-col-1,
@@ -576,8 +574,8 @@ hr {
 #footer-col-4 {
   display: inline;
   float: left;
-  width: 220px;
-  margin: 0 10px;
+  width: 22.916666666667%;
+  margin: 0 1.0416666666667%;
   margin-bottom: 22px;
 }
 #navbar {
@@ -2770,4 +2768,86 @@ figure.rounded img {
 .fa-percent:before {
   content: "\f295";
 }
-";s:5:"files";a:23:{s:64:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/style.less";i:1454075975;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/normalize.less";i:1453791825;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/variables.less";i:1454075927;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/mixins.less";i:1454063589;s:69:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/css3mixins.less";i:1454063593;s:63:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/grid.less";i:1454058924;s:69:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/typography.less";i:1454071926;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/structure.less";i:1454076008;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/navbar.less";i:1454060937;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/figure.less";i:1454056575;s:95:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/font-awesome.less";i:1452325054;s:92:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/variables.less";i:1454072400;s:89:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/mixins.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/path.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/core.less";i:1452325054;s:89:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/larger.less";i:1452325054;s:94:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/fixed-width.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/list.less";i:1452325054;s:98:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/bordered-pulled.less";i:1452325054;s:91:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/animated.less";i:1452325054;s:98:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/rotated-flipped.less";i:1452325054;s:90:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/stacked.less";i:1452325054;s:88:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/icons.less";i:1452325054;}s:7:"updated";i:1454076010;}
+@media (max-width: 500px) {
+  #featured-1,
+  #featured-2,
+  #featured-3,
+  #triptych-1,
+  #triptych-2,
+  #triptych-3,
+  #footer-col-1,
+  #footer-col-2,
+  #footer-col-3,
+  #footer-col-4 {
+    display: none;
+  }
+  #main,
+  #sidebar {
+    display: inline;
+    float: left;
+    width: 97.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+}
+@media (min-width: 501px) {
+  #featured-1,
+  #featured-2,
+  #featured-3,
+  #triptych-1,
+  #triptych-2,
+  #triptych-3 {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+  #main,
+  #sidebar {
+    display: inline;
+    float: left;
+    width: 97.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+  #footer-col-1,
+  #footer-col-2,
+  #footer-col-3,
+  #footer-col-4 {
+    display: inline;
+    float: left;
+    width: 47.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+}
+@media (min-width: 768px) {
+  #main {
+    display: inline;
+    float: left;
+    width: 64.583333333333%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+  #sidebar {
+    display: inline;
+    float: left;
+    width: 31.25%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+}
+@media (min-width: 992px) {
+  #footer-col-1,
+  #footer-col-2,
+  #footer-col-3,
+  #footer-col-4 {
+    display: inline;
+    float: left;
+    width: 22.916666666667%;
+    margin: 0 1.0416666666667%;
+    margin-bottom: 22px;
+  }
+}
+";s:5:"files";a:24:{s:64:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/style.less";i:1454078638;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/normalize.less";i:1453791825;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/variables.less";i:1454078697;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/mixins.less";i:1454063589;s:69:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/css3mixins.less";i:1454063593;s:63:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/grid.less";i:1454058924;s:69:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/typography.less";i:1454071926;s:68:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/structure.less";i:1454078955;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/navbar.less";i:1454060937;s:65:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/figure.less";i:1454056575;s:95:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/font-awesome.less";i:1452325054;s:92:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/variables.less";i:1454072400;s:89:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/mixins.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/path.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/core.less";i:1452325054;s:89:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/larger.less";i:1452325054;s:94:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/fixed-width.less";i:1452325054;s:87:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/list.less";i:1452325054;s:98:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/bordered-pulled.less";i:1452325054;s:91:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/animated.less";i:1452325054;s:98:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/rotated-flipped.less";i:1452325054;s:90:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/stacked.less";i:1452325054;s:88:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/font-awesome-4.5.0/less/icons.less";i:1452325054;s:69:"/home/stefan/ws/phpmvc/Anax-MVC/webroot/css/anax-grid/responsive.less";i:1454080676;}s:7:"updated";i:1454080679;}

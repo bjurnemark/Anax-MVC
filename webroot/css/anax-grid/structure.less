@@ -3,11 +3,11 @@
  */
 
 #wrapper {
-    background: url(grid_12_60_20.png) center -7px  repeat-y;
-    overflow: hidden;
-    width: 960px;
+    // background: url(grid_12_60_20.png) center -7px  repeat-y;
+    // overflow: hidden;
     margin: 0 auto;
     padding: 10px 0;
+    max-width: 960px;
 }
 
 /**
@@ -89,7 +89,9 @@
     .clearfix();
 }
 
-
+//
+// Full width regions
+//
 #header,
 #navbar,
 #flash,
@@ -98,6 +100,9 @@
     margin-bottom: 22px;
 }
 
+//
+// Main and sidebar
+//
 #main {
     .column(@columns / 3 * 2);
     margin-bottom: 22px;
@@ -108,6 +113,9 @@
     margin-bottom: 22px;
 }
 
+//
+// Featured and triptych is 1/3 of the screen by default
+//
 #featured-1,
 #featured-2,
 #featured-3,
@@ -118,6 +126,9 @@
     margin-bottom: 22px;
 }
 
+//
+// Footer had four subsections
+//
 #footer-col-1,
 #footer-col-2,
 #footer-col-3,

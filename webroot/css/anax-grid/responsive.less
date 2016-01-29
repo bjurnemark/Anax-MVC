@@ -1,21 +1,72 @@
-/* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
+/* Very small devices (phones, less than 500px) */
+@media (max-width: 500px) {
+    //
+    // Hide most of the stuff or the user will have to scroll forever
+    #featured-1,
+    #featured-2,
+    #featured-3,
+    #triptych-1,
+    #triptych-2,
+    #triptych-3,
     #footer-col-1,
     #footer-col-2,
     #footer-col-3,
-    #footer-col-4  {
+    #footer-col-4 {
+        display: none;
+    }
+
+    //
+    // Make remaining elements full width
+    //
+    #main,
+    #sidebar {
         .column(@columns);
         margin-bottom: @magicNumber;
     }
 }
 
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+/* Small devices (less than 768px) */
+@media (min-width: 501px) {
+    #featured-1,
+    #featured-2,
+    #featured-3,
+    #triptych-1,
+    #triptych-2,
+    #triptych-3 {
+        .column(@columns / 3);
+        margin-bottom: @magicNumber;
+    }
+
+    //
+    // Make main elements full width
+    //
+    #main,
+    #sidebar {
+        .column(@columns);
+        margin-bottom: @magicNumber;
+    }
+
     #footer-col-1,
     #footer-col-2,
     #footer-col-3,
     #footer-col-4  {
         .column(@columns / 2);
+        margin-bottom: @magicNumber;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    //
+    // Give main elements normal sizing
+    //
+    #main {
+        .column(@columns / 3 * 2);
+        margin-bottom: @magicNumber;
+    }
+
+    #sidebar {
+        .column(@columns / 3);
         margin-bottom: @magicNumber;
     }
 }
