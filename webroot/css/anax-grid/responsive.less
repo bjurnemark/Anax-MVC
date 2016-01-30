@@ -1,3 +1,45 @@
+/* Medium devices (up to 919px) */
+@media (max-width: 919px) {
+    //
+    // Adjust sizes in header
+    //
+    #sitelogo {
+        .font-size(@sizeMedium * 1em);
+    }
+    #sitetitle {
+        .font-size(@fontSizeH1);
+    }
+    #siteslogan {
+        .font-size(@fontSizeH5);
+    }
+}
+
+
+/* Small devices (less than 768px) */
+@media (max-width: 767px) {
+    //
+    // Make main elements full width
+    //
+    #main,
+    #sidebar {
+        .column(@columns);
+        margin-bottom: @magicNumber;
+    }
+
+    //
+    // Adjust sizes in header
+    //
+    #sitelogo {
+        .font-size(@sizeSmall * 1em);
+    }
+    #sitetitle {
+        .font-size(@fontSizeH2);
+    }
+    #siteslogan {
+        .font-size(@fontSizeSmall);
+    }
+}
+
 /* Very small devices (phones, less than 500px) */
 @media (max-width: 500px) {
     //
@@ -29,87 +71,5 @@
 
     #sitetitle {
         .font-size(@fontSizeH3);
-    }
-
-    #siteslogan {
-        .font-size(@fontSizeSmall);
-    }
-}
-
-/* Small devices (less than 768px) */
-@media (min-width: 501px) {
-    #featured-1,
-    #featured-2,
-    #featured-3,
-    #triptych-1,
-    #triptych-2,
-    #triptych-3 {
-        .column(@columns / 3);
-        margin-bottom: @magicNumber;
-    }
-
-    //
-    // Make main elements full width
-    //
-    #main,
-    #sidebar {
-        .column(@columns);
-        margin-bottom: @magicNumber;
-    }
-
-    //
-    // Adjust sizes in header
-    //
-    #sitelogo {
-        .font-size(@sizeSmall * 1em);
-    }
-    #sitetitle {
-        .font-size(@fontSizeH2);
-    }
-    #siteslogan {
-        .font-size(@fontSizeSmall);
-    }
-}
-
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) {
-    //
-    // Give main elements normal sizing
-    //
-    #main {
-        .column(@columns / 3 * 2);
-        margin-bottom: @magicNumber;
-    }
-
-    #sidebar {
-        .column(@columns / 3);
-        margin-bottom: @magicNumber;
-    }
-
-    //
-    // Adjust sizes in header
-    //
-    #sitelogo {
-        .font-size(@sizeMedium * 1em);
-    }
-    #sitetitle {
-        .font-size(@fontSizeH1);
-    }
-    #siteslogan {
-        .font-size(@fontSizeH5);
-    }
-
-}
-
-/* Desktop and other high res devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    //
-    // Adjust sizes in header
-    //
-    #sitelogo {
-        .font-size(@sizeNormal * 1em);
-    }
-    #sitetitle {
-        .font-size(@fontSizeSiteTitle);
     }
 }
