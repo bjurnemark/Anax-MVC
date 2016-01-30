@@ -1,0 +1,85 @@
+/**
+ * Site specific colors
+ */
+@siteMainColor:         #740927;
+@siteAccentColor:       #CCAC00;
+
+/**
+* Layout for header
+*/
+#header {
+    .column(@columns);
+    background-color: @siteMainColor;
+    color: @siteAccentColor;
+    padding: @magicNumber 0;
+}
+
+#sitelogo {
+    .column(@columns / 6);
+}
+
+#sitetitle {
+    .column(@columns / 6 * 5);
+    .font-size(@fontSizeH1);
+}
+
+#siteslogan {
+    .column(@columns / 6 * 5);
+    .font-size(@fontSizeH5);
+    font-style: italic;
+}
+
+/**
+ * Layout for main
+ */
+#main {
+    min-height: 20em;
+}
+
+/**
+ * Layout for footer
+ */
+
+#wrap-footer {
+    background-color: @siteMainColor;
+    color: @siteAccentColor;
+    
+}
+
+#footer-col-1,
+#footer-col-2,
+#footer-col-3,
+#footer-col-4 {
+    background-color: @siteMainColor;
+    color: @siteAccentColor;
+}
+
+#footer {
+    background-color: @siteMainColor;
+    color: @siteAccentColor;
+    border-top: 2px solid @siteAccentColor;
+    padding: @magicNumber 0;
+}
+
+/**
+ * For articles
+ */
+.article1 {
+    border-right: 1px solid #ccc;
+}
+
+.article1 h1,
+.article1 h2 {
+    border-bottom: 1px solid #ccc;
+}
+
+.byline {
+    margin-top: 44px;
+    border-top: 1px dashed #ccc;
+    padding-top: 22px;
+    color: #666;
+}
+
+.byline p {
+    margin-top: 0;
+}

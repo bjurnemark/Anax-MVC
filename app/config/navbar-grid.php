@@ -30,9 +30,9 @@ return [
         ],
 
         'font-awesome'  => [
-            'text'  => 'Testa font-awesome',
+            'text'  => 'Font Awesome',
             'url'   => $this->di->get('url')->create('font-awesome'),
-            'title' => 'Testa font-awesome'
+            'title' => 'Font Awesome'
         ],
     ],
 

@@ -21,8 +21,8 @@ return [
      * Add default views.
      */
     'views' => [
-        ['region' => 'header', 'template' => 'welcome/header', 'data' => [], 'sort' => -1],
-        ['region' => 'footer', 'template' => 'welcome/footer', 'data' => [], 'sort' => -1],
+        ['region' => 'header', 'template' => 'grid/header', 'data' => [], 'sort' => -1],
+        ['region' => 'footer', 'template' => 'grid/footer', 'data' => [], 'sort' => -1],
 
         // navbar
         [

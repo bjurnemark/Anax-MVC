@@ -3,11 +3,11 @@
  * Changed to only style li-items instead of a.
  */
 #navbar {
-  margin-bottom: 44px;
+  margin-bottom: @magicNumber;
 }
 
 .navbar {
-    background-color: #ddd;
+    background-color: @siteMainColor;
 }
 
 .navbar ul {
@@ -18,7 +18,8 @@
 
 .navbar li {
   display: inline-block;
-  border-top: 4px solid transparent;
+  border-top: 4px solid @siteAccentColor;
+  border-bottom: 4px solid @siteAccentColor;
   color: #333;
   position: relative;
 }
@@ -26,26 +27,26 @@
 .navbar a {
   display: block;
   width: 100%;
-  padding: 1em;
+  padding: @magicNumber / 2 @magicNumber;
   text-decoration: none;
-  color: inherit;
+  font-size: @fontSizeH4;
+  line-height: @fontSizeH4;
+  color: @siteAccentColor;
   white-space: nowrap;
 }
 
 .navbar li:hover {
-  color: #666;
-  border-color: #666;
+  border-color: @siteMainColor;
 }
 
 .navbar li.selected-parent,
 .navbar li.is-parent,
 .navbar li.selected {
-  color: #22f;
-  border-color: #22f;
+  border-color: @siteMainColor;
 }
 
 .navbar ul ul {
-  background-color: #fff;
+  background-color: @siteMainColor;
   padding: 8px;
   position: absolute;
   left: -9999px;
@@ -62,16 +63,14 @@
 }
 
 .navbar li li:hover {
-  color: #666;
-  border-color: #666;
+    border-color: @siteMainColor;
 }
 
 .navbar li li.selected {
-  color: #22f;
-  border-color: #22f;
+    border-color: @siteMainColor;
 }
 
 /* Just to sho off how class works */
 .navbar li .italic {
-  font-style: italic;
+    font-style: italic;
 }
