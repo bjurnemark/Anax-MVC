@@ -48,21 +48,11 @@
         </div>
     <?php endif; ?>
 
-
     <?php if ($this->views->hasContent('triptych-1', 'triptych-2', 'triptych-3')) : ?>
         <div id='wrap-triptych'>
             <div id='triptych-1'><?php $this->views->render('triptych-1')?></div>
             <div id='triptych-2'><?php $this->views->render('triptych-2')?></div>
             <div id='triptych-3'><?php $this->views->render('triptych-3')?></div>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($this->views->hasContent('footer-col-1', 'footer-col-2', 'footer-col-3', 'footer-col-4')) : ?>
-        <div id='wrap-footer'>
-            <div id='footer-col-1'><?php $this->views->render('footer-col-1')?></div>
-            <div id='footer-col-2'><?php $this->views->render('footer-col-2')?></div>
-            <div id='footer-col-3'><?php $this->views->render('footer-col-3')?></div>
-            <div id='footer-col-4'><?php $this->views->render('footer-col-4')?></div>
         </div>
     <?php endif; ?>
 

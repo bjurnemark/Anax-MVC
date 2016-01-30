@@ -7,11 +7,7 @@
     #featured-3,
     #triptych-1,
     #triptych-2,
-    #triptych-3,
-    #footer-col-1,
-    #footer-col-2,
-    #footer-col-3,
-    #footer-col-4 {
+    #triptych-3 {
         display: none;
     }
 
@@ -45,14 +41,6 @@
         .column(@columns);
         margin-bottom: @magicNumber;
     }
-
-    #footer-col-1,
-    #footer-col-2,
-    #footer-col-3,
-    #footer-col-4  {
-        .column(@columns / 2);
-        margin-bottom: @magicNumber;
-    }
 }
 
 /* Medium devices (tablets, 768px and up) */
@@ -73,11 +61,4 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-    #footer-col-1,
-    #footer-col-2,
-    #footer-col-3,
-    #footer-col-4 {
-        .column(@columns / 4);
-        margin-bottom: @magicNumber;
-    }
 }

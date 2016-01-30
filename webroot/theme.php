@@ -36,11 +36,7 @@ $app->router->add('regioner', function() use ($app) {
     //            ->addString('sidebar', 'sidebar')
     //            ->addString('triptych-1', 'triptych-1')
     //            ->addString('triptych-2', 'triptych-2')
-    //            ->addString('triptych-3', 'triptych-3')
-    //            ->addString('footer-col-1', 'footer-col-1')
-    //            ->addString('footer-col-2', 'footer-col-2')
-    //            ->addString('footer-col-3', 'footer-col-3')
-    //            ->addString('footer-col-4', 'footer-col-4');
+    //            ->addString('triptych-3', 'triptych-3');
 
     $app->views->addString('flash', 'flash')
                ->addString('featured-1', 'featured-1')
@@ -48,10 +44,7 @@ $app->router->add('regioner', function() use ($app) {
                ->addString('main', 'main')
                ->addString('sidebar', 'sidebar')
                ->addString('triptych-1', 'triptych-1')
-               ->addString('triptych-2', 'triptych-2')
-               ->addString('footer-col-1', 'footer-col-1')
-               ->addString('footer-col-2', 'footer-col-2')
-               ->addString('footer-col-3', 'footer-col-3');
+               ->addString('triptych-2', 'triptych-2');
 });
 
 
