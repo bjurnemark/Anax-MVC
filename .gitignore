@@ -1,5 +1,6 @@
 # Generated files
-style.less.cache
+/webroot/css/anax-grid/style.less.cache
+/webroot/css/anax-grid/style.css
 
 # Logs and databases
 *.sqlite
