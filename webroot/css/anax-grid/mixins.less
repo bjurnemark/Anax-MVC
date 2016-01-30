@@ -1,13 +1,13 @@
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * Mixins
  */
 
 
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
  */
 .clearfix() {
-  *zoom:1;  
+  *zoom:1;
   &:before, &:after {
     content:"";display:table;
   }
@@ -17,7 +17,7 @@
 }
 
 
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * Wrap elements to site width in grid layout
  */
 .wrap(@extra-width: 0) {
@@ -27,7 +27,7 @@
 }
 
 
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * Always show the scrollbar
  */
 .alwaysShowScrollbar() {
@@ -36,7 +36,7 @@
 }
 
 
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * Typography. Calculate font-size and line-height.
  */
 .body-font() {
@@ -49,18 +49,18 @@
 }
 
 .font-size(@fontSize) when (@fontSize > 1) and (@fontSize*@fontSizeBody < @magicNumber) {
-  line-height: unit(@magicNumber/(@fontSize*@fontSizeBody)); 
+  line-height: unit(@magicNumber/(@fontSize*@fontSizeBody));
 }
 
 .font-size(@fontSize) when (@fontSize > @magicNumber/@fontSizeBody) and (@fontSize*@fontSizeBody > @magicNumber) and (@fontSize*@fontSizeBody < @magicNumber*2) {
-  line-height: unit(@magicNumber*2/(@fontSize*@fontSizeBody)); 
+  line-height: unit(@magicNumber*2/(@fontSize*@fontSizeBody));
 }
 
 
 // 5/4 for smaller font-size, incremental leading.
 
 
-/** ------------------------------------------------------------------ 
+/** ------------------------------------------------------------------
  * Anchors.
  */
 .anchor-none(@color: inherit) {
@@ -101,5 +101,3 @@
     &:hover{color:@anchorColor;text-decoration:underline;}
   }
 }*/
-
-

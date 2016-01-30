@@ -28,23 +28,15 @@ $app->router->add('regioner', function() use ($app) {
     $app->theme->addStylesheet('css/anax-grid/regions_demo.css');
     $app->theme->setTitle("Regioner");
 
-    // $app->views->addString('flash', 'flash')
-    //            ->addString('featured-1', 'featured-1')
-    //            ->addString('featured-2', 'featured-2')
-    //            ->addString('featured-3', 'featured-3')
-    //            ->addString('main', 'main')
-    //            ->addString('sidebar', 'sidebar')
-    //            ->addString('triptych-1', 'triptych-1')
-    //            ->addString('triptych-2', 'triptych-2')
-    //            ->addString('triptych-3', 'triptych-3');
-
     $app->views->addString('flash', 'flash')
                ->addString('featured-1', 'featured-1')
                ->addString('featured-2', 'featured-2')
+               ->addString('featured-3', 'featured-3')
                ->addString('main', 'main')
                ->addString('sidebar', 'sidebar')
                ->addString('triptych-1', 'triptych-1')
-               ->addString('triptych-2', 'triptych-2');
+               ->addString('triptych-2', 'triptych-2')
+               ->addString('triptych-3', 'triptych-3');
 });
 
 
@@ -53,13 +45,18 @@ $app->router->add('typography', function() use ($app) {
     $app->theme->setTitle("Typografi");
 
     $pContent  = $app->fileContent->get('paragraph.html');
-    $main = $app->fileContent->get('main.html');
-    $side = $app->fileContent->get('side.html');
-    $app->views->addString($pContent, 'flash');
-    $app->views->addString($main, 'main');
-    $app->views->addString($side, 'sidebar');
-});
+    $main      = $app->fileContent->get('main.html');
+    $side      = $app->fileContent->get('side.html');
 
+
+    $app->views->addString('Vissa element saknar innehåll och ska därför inte synas. Det gäller featured-3 och triptych-3', 'flash')
+               ->addString($pContent, 'featured-1')
+               ->addString($pContent, 'featured-2')
+               ->addString($main, 'main')
+               ->addString($side, 'sidebar')
+               ->addString($pContent, 'triptych-1')
+               ->addString($pContent, 'triptych-2');
+});
 
 $app->router->add('font-awesome', function() use ($app) {
 
