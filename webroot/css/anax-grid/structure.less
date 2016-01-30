@@ -20,10 +20,12 @@
 // Full width regions
 //
 #navbar,
-#flash,
+#flash {
+    margin-bottom: @magicNumber;
+}
+
 #footer {
     .column(@columns);
-    margin-bottom: 22px;
 }
 
 //
@@ -31,12 +33,12 @@
 //
 #main {
     .column(@columns / 3 * 2);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
 
 #sidebar {
     .column(@columns / 3);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
 
 //
@@ -49,5 +51,5 @@
 #triptych-2,
 #triptych-3 {
     .column(@columns / 3);
-    margin-bottom: 22px;
+    margin-bottom: @magicNumber;
 }
