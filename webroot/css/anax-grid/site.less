@@ -5,6 +5,14 @@
 @siteAccentColor:       #CCAC00;
 
 /**
+* Site specific multipliers to use for scaling
+*/
+@sizeVerySmall:     2;
+@sizeSmall:         3;
+@sizeMedium:        4;
+@sizeNormal:        5;
+
+/**
 * Layout for header
 */
 #header {
@@ -20,12 +28,10 @@
 
 #sitetitle {
     .column(@columns / 6 * 5);
-    .font-size(@fontSizeH1);
 }
 
 #siteslogan {
     .column(@columns / 6 * 5);
-    .font-size(@fontSizeH5);
     font-style: italic;
 }
 
