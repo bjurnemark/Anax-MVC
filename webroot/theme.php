@@ -52,9 +52,12 @@ $app->router->add('typography', function() use ($app) {
 
     $app->theme->setTitle("Typografi");
 
-    $content = $app->fileContent->get('typography.html');
-    $app->views->addString($content, 'main');
-    $app->views->addString($content, 'sidebar');
+    $pContent  = $app->fileContent->get('paragraph.html');
+    $main = $app->fileContent->get('main.html');
+    $side = $app->fileContent->get('side.html');
+    $app->views->addString($pContent, 'flash');
+    $app->views->addString($main, 'main');
+    $app->views->addString($side, 'sidebar');
 });
 
 

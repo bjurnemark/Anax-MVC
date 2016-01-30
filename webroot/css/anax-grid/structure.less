@@ -1,6 +1,6 @@
 
 #wrapper {
-    // background: url(grid_12_60_20.png) center -7px  repeat-y;
+    background: url(grid_12_60_20.png) center 7px  repeat-y;
     // overflow: hidden;
     margin: 0 auto;
     max-width: 960px;
@@ -19,8 +19,12 @@
 //
 // Full width regions
 //
-#navbar,
+#navbar {
+    margin-bottom: @magicNumber;
+}
+
 #flash {
+    margin-left: @gutterWidth / 2 * 1px;
     margin-bottom: @magicNumber;
 }
 
