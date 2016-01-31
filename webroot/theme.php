@@ -28,7 +28,7 @@ $app->router->add('regioner', function() use ($app) {
     $app->theme->addStylesheet('css/anax-grid/regions_demo.css');
     $app->theme->setTitle("Regioner");
 
-    $app->views->addString('flash', 'flash')
+    $app->views->addString('Den här sidan sätter bakgrundsfärgen till grå (#ddd) för de dynamiska regionerna. Syftet är att visa hur de reagerar responsivt. Även headern är responsiv m.a.p. font-storlekar.', 'flash')
                ->addString('featured-1', 'featured-1')
                ->addString('featured-2', 'featured-2')
                ->addString('featured-3', 'featured-3')
@@ -42,6 +42,7 @@ $app->router->add('regioner', function() use ($app) {
 
 $app->router->add('typography', function() use ($app) {
 
+    $app->theme->addStylesheet('css/anax-grid/h-grid.css');
     $app->theme->setTitle("Typografi");
 
     $pContent  = $app->fileContent->get('paragraph.html');
