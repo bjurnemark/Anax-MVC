@@ -91,7 +91,7 @@ Jag har inte lagt särskilt mycket tid på att titta runt bland paketen, men det
 en god idé att återanvända befintliga lösningar framför att implementera allt från grunden.
 
 Det blir också vanligare och mer accepterat (även inom företag) att man bygger lösningar genom att använda externa komponenter och att programmering mer handlar om att få
-komponenter att fungera tillsammans än att bygga hela egna lösningar. 
+komponenter att fungera tillsammans än att bygga hela egna lösningar.
 
 ###Hur var begreppen att förstå med klasser som kontroller som tjänster som dispatchas, fick du ihop allt?
 Jag tror jag har förstått det. När jag hade implementerat min lösning förstod
@@ -107,6 +107,110 @@ av enskilda kommentarer.
 
 Kmom03: Bygg ett eget tema
 --------------------------
+Det var intressant att läsa om de olika design-principerna och tankarna bakom vertikala
+och horisontella rutnät. Det gav mycket att se hur stor betydelse "alignment"
+har för hur man uppfattar en sida och få lite inblick i hur man kan tänka kring
+layout av en site.
+
+När jag arbetade igenom övningen blev jag lite överraskad över att man kunde
+importera `variables.less` efter `grid.less` trots att variablerna används i
+`grid.less`. (Själva mix-ins anropas i och för sig inte förrän i den efterföljande
+filen `structure.less`).
+
+Ett problem jag har är att style-sheet inte hinner skapas första gången man
+laddar sidan efter att ha gjort någon förändring i less-filerna. Tittar man på
+devtools/network står det att `style.php` är 0 kb, men `style.css` blir
+uppdaterad/skapad i filsystemet. När man gör refresh på sidan laddas allt som det ska.
+
+Problemet verkar vara kopplat till `typography.less`. Kommenterar jag bort importen
+av den fungerar styling första gången jag laddar sidan. Jag misstänker att
+genereringen av `style.css` helt enkelt tar för lång tid. För en publicerad
+webbsida hade det inte varit något problem eftersom det då finns en `style.css` som
+är aktuell och kan returneras direkt. På en publik site hade man väl även pekat
+om referensen till css-filen direkt istället för att köra `style.php` vid varje anrop.
+
+Jag hade även ett litet problem med att hämta Font-Awesome enligt exemplet, men
+det var enkelt löst genom att ändra versionsnumret till senaste versionen.
+
+När jag gjort min egen style (som bygger vidare på övningen) får jag inte
+rubrikerna att lägga sig "på linjerna" i det horisontella rutnätet. Tittar jag
+på radhöjder och marginaler i devtools/boxmodell ser allt rätt ut (dvs det är
+jämna multipler av det "magiska talet") men rubrikerna hamnar ändå inte rätt.
+Den efterföljande texten i styckena hamnar däremot på linjerna, så jag grävde
+inte ner mig i det. Försökte justera med `vertical-align` men fick inte det att
+göra skillnad, så jag gick vidare med arbetet.
+
+H3 fick fel radhöjd eftersom fontstorleken var lika med det magiska
+talet, så jag ökade storleken på H3 något som en enkel workaround. "Rätt" lösning
+vore väl att korrigera mixin för `.font-size` så att den även hanterar fallet att
+fontstorleken är lika med det magiska talet.
+
+Min site har en separat front-controller för temat. Jag hade lite problem med att
+få rewrites i `.htaccess` rätt, men hittade ett par trådar i forumen
+([här](http://dbwebb.se/forum/viewtopic.php?f=14&t=3315) och
+[här](http://dbwebb.se/forum/viewtopic.php?f=40&t=2643&p=21701)) som tog upp
+problemet och hjälpte mig på rätt spår.
+
+### Extra
+Jag lade upp temat som ett eget [repo](https://github.com/bjurnemark/Anax-MVC-grid-theme.git)
+på GitHub. Det projektet innehåller även en "sample"-mapp med de filer som behövs
+för att visa temat i Anax-MVC och en mycket enkel html-sida som använder temat
+utan att använda Anax-MVC för att visa att temat fungerar även utan Anax.  
+
+###Vad tycker du om CSS-ramverk i allmänhet och vilka tidigare erfarenheter har du av dem?
+De känns väldigt användbara. Bootstrap var mycket imponerande i hur det var
+strukturerat och hur mycket funktionalitet det innehöll. Detta är första gången
+jag jobbar med CSS-ramverk överhuvudtaget.
+
+###Vad tycker du om LESS, lessphp och Semantic.gs?
+LESS kändes som ett lyft mot standard CSS. Att kunna definiera värden
+och återanvända dem så att man bara har ett ställe att ändra på underlättar.
+Även mixins känns kraftfulla och det var bra att se de lite mer avancerade
+exemplen (t ex `.font-size`) som sätter flera olika CSS-värden som är relaterade
+till varandra.
+
+Jag föredrar `lessphp` eller någon annan lösning som kompilerar CSS-filerna på
+servern framför att låta webb-läsaren kompilera LESS-koden så att man har
+kontroll på vilken CSS som genereras och kan testa exakt den. `style.php`
+underlättade för att kunna utveckla utan att behöva kompilera less-filerna i
+ett eget steg.
+
+Även `Semantic.gs` var mycket användbart. Både för att få en snygg layout på
+sidorna och för att skapa ett responsivt UI på ett enkelt sätt.
+
+###Vad tycker du om gridbaserad layout, vertikalt och horisontellt?
+Båda två känns som bra principer att följa om man inte har särskilda skäl att
+göra något annorlunda. Grafisk design & "CSS-pyssel" är den delen av kurserna
+som jag är minst intresserad av, men till och med jag såg vilken skillnad det
+gjorde när element hade konsekventa storlekar och texten "hamnar rätt".
+
+###Har du några kommentarer om Font Awesome, Bootstrap, Normalize?
+Bootstrap tyckte jag som sagt var mycket imponerande och det är definitivt något
+jag kommer att titta vidare på för att bygga webb-platser.
+
+Normalize känns som en bra "default" att inkludera för att på ett enkelt sätt
+få sina sidor mer enhetliga mellan olika webbläsare.
+
+Font-Awesome var även det en bra resurs att känna till. Många symboler, enhetlig
+stil mellan dem och flexibelt eftersom så mycket går att styra via CSS. (Dessutom är
+jag inte alls kompis med GIMP, så kan jag slippa använda det gör jag gärna det).
+
+###Beskriv ditt tema, hur tänkte du när du gjorde det, gjorde du några utsvävningar?
+Som sagt, grafisk design är inte min starka sida, men jag tänkte att jag skulle
+göra något som var ganska elegant men ändå enkelt. Jag höll mig till bara ett par
+färger. För den responsiva delen vill jag undvika att element blir så små att
+de blir oanvändbara. När man går mot mindre enheter valde jag att låta huvud-innehållet
+och sido-menyn få full vidd. Vid ännu mindre enheter döljer jag en hel del element
+för att inte användaren ska behöva scrolla igenom mängder av olika delar.
+
+###Antog du utmaningen som extra uppgift?
+Ja, jag har lagt upp temat som ett eget projekt på GitHub (se kommentarer ovan).
+Som en del av det gjorde jag en separat, enkel html-sida som visar temat och de
+olika regionerna. Där blev jag lite förvånad över hur få beroenden det ändå fanns
+mot Anax, så det kändes bra.
+
+Jag har försökt göra temat enkelt att styla genom att samla temats inställningar
+i `site.less` och  `responsive.less`.
 
 Kmom04: Databasdrivna modeller
 ------------------------------
