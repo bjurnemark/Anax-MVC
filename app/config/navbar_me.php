@@ -49,6 +49,12 @@ return [
             ],
         ],
 
+        'theme'  => [
+            'text'  => 'Tema',
+            'url'   => $this->di->get('url')->create('theme'),
+            'title' => 'Tema'
+        ],
+
         'source'  => [
             'text'  => 'Källkod',
             'url'   => $this->di->get('url')->create('source'),

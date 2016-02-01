@@ -19,21 +19,28 @@ return [
 
         'regions'  => [
             'text'  => 'Regioner',
-            'url'   => $this->di->get('url')->create('regioner'),
+            'url'   => $this->di->get('url')->create('theme/grid-regioner'),
             'title' => 'Regioner'
         ],
 
         'typography'  => [
             'text'  => 'Typografi',
-            'url'   => $this->di->get('url')->create('typography'),
+            'url'   => $this->di->get('url')->create('theme/grid-typography'),
             'title' => 'Typografi'
         ],
 
         'font-awesome'  => [
             'text'  => 'Font Awesome',
-            'url'   => $this->di->get('url')->create('font-awesome'),
+            'url'   => $this->di->get('url')->create('theme/grid-font-awesome'),
             'title' => 'Font Awesome'
         ],
+
+        'me-page'  => [
+            'text'  => 'Me-sida',
+            'url'   => $this->di->get('url')->create(''),
+            'title' => 'Me-sida'
+        ],
+
     ],
 
 

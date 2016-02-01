@@ -23,7 +23,7 @@ $app->router->add('theme', function() use ($app) {
 
 });
 
-$app->router->add('regioner', function() use ($app) {
+$app->router->add('theme/grid-regioner', function() use ($app) {
 
     $app->theme->addStylesheet('css/anax-grid/regions_demo.css');
     $app->theme->setTitle("Regioner");
@@ -40,7 +40,7 @@ $app->router->add('regioner', function() use ($app) {
 });
 
 
-$app->router->add('typography', function() use ($app) {
+$app->router->add('theme/grid-typography', function() use ($app) {
 
     $app->theme->addStylesheet('css/anax-grid/h-grid.css');
     $app->theme->setTitle("Typografi");
@@ -59,7 +59,7 @@ $app->router->add('typography', function() use ($app) {
                ->addString($pContent, 'triptych-2');
 });
 
-$app->router->add('font-awesome', function() use ($app) {
+$app->router->add('theme/grid-font-awesome', function() use ($app) {
 
     $app->theme->setTitle("Testa font-awesome");
 
