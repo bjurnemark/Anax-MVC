@@ -17,12 +17,12 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 
 // Add database as a service
-$di->setShared('db', function() {
-    $db = new \Mos\Database\CDatabaseBasic();
-    $db->setOptions(require ANAX_APP_PATH . 'config/database_mysql.php');
-    $db->connect();
-    return $db;
-});
+// $di->setShared('db', function() {
+    // $db = new \Mos\Database\CDatabaseBasic();
+    // $db->setOptions(require ANAX_APP_PATH . 'config/database_mysql.php');
+    // $db->connect();
+    // return $db;
+// });
 
 // Add a controller for users
 $di->set('UsersController', function() use ($di) {
