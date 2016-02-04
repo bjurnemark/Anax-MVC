@@ -28,8 +28,25 @@ class UsersController implements \Anax\DI\IInjectionAware
      * @return void
      */
     public function setupAction() {
-        $this->users->createTable();
-        $this->users->insertBaseData();
+        $this->users->createTable(
+            [
+                'id'       => ['integer', 'primary key', 'not null', 'auto_increment'],
+                'acronym'  => ['varchar(20)', 'unique', 'not null'],
+                'email'    => ['varchar(80)'],
+                'name'     => ['varchar(80)'],
+                'password' => ['varchar(255)'],
+                'created'  => ['datetime'],
+                'updated'  => ['datetime'],
+                'deleted'  => ['datetime'],
+                'active'   => ['datetime'],
+            ]
+        );
+
+        $this->add('admin', 'Administrator');
+        $this->add('doe', 'John/Jane Doe');
+
+        $url = $this->url->create('users/list/');
+        $this->response->redirect($url);
     }
 
 
@@ -80,19 +97,9 @@ class UsersController implements \Anax\DI\IInjectionAware
             die("Missing acronym");
         }
 
-        $now = gmdate('Y-m-d H:i:s');
+        $this->add($acronym);
 
-        $this->users->save([
-            'acronym' => $acronym,
-            'email' => $acronym . '@mail.se',
-            'name' => 'Mr/Mrs ' . $acronym,
-            'password' => password_hash($acronym, PASSWORD_DEFAULT),
-            'created' => $now,
-            'active' => $now,
-        ]);
-
-        // TODO: Remove dbtest.php when rewrite is OK
-        $url = $this->url->create('dbtest.php/users/id/' . $this->users->id);
+        $url = $this->url->create('users/id/' . $this->users->id);
         $this->response->redirect($url);
     }
 
@@ -183,6 +190,33 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->views->add('users/list-all', [
             'users' => $all,
             'title' => "Users that are active",
+        ]);
+    }
+
+
+    /**
+     * Utility for adding a  new user.
+     *
+     * @param string $acronym of user to add.
+     * TODO: ADD PARAMS
+     *
+     * @return void
+     */
+    protected function add($acronym, $name = null, $password = null)
+    {
+        $name = isset($name) ? $name : $acronym;
+        $password = isset($password) ? $password : $acronym;
+        $now = gmdate('Y-m-d H:i:s');
+
+        // Note: Use create to handle multiple calls. (Otherwise $id will be
+        // set and subsequent calls will do update instead of insert.)
+        $this->users->create([
+            'acronym ' => $acronym,
+            'email'    => $acronym . '@mail.se',
+            'name'     => 'Mr/Mrs ' . $name,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+            'created'  => $now,
+            'active'   => $now,
         ]);
     }
 }
