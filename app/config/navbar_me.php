@@ -55,6 +55,12 @@ return [
             'title' => 'Tema'
         ],
 
+        'db-models'  => [
+            'text'  => 'DB/Modeller',
+            'url'   => $this->di->get('url')->create('db-models'),
+            'title' => 'Databasdrivna modeller'
+        ],
+
         'source'  => [
             'text'  => 'Källkod',
             'url'   => $this->di->get('url')->create('source'),

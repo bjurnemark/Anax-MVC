@@ -31,7 +31,5 @@ class CDIFactoryExtended extends CDIFactoryDefault
             $db->connect();
             return $db;
         });
-
-
     }
 }

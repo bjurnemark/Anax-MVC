@@ -21,6 +21,18 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->users->setDI($this->di);
     }
 
+
+    /**
+     * Create and initialize the database table.
+     *
+     * @return void
+     */
+    public function setupAction() {
+        $this->users->createTable();
+        $this->users->insertBaseData();
+    }
+
+
     /**
      * List all users.
      *

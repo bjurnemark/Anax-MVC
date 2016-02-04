@@ -21,6 +21,21 @@ class CDatabaseModel implements \Anax\DI\IInjectionAware
     }
 
     /**
+     * Create the table.
+     *
+     * @param array $columns with column definitions.
+     * @return void.
+     */
+    public function createTable($columns) {
+        $tableName = $this->getSource();
+        $this->db->dropTableIfExists($tableName)->execute();
+
+        $this->db->createTable($tableName, $columns)->execute();
+    }
+
+
+
+    /**
      * Find and return all.
      *
      * @return array
@@ -226,5 +241,5 @@ class CDatabaseModel implements \Anax\DI\IInjectionAware
         $this->db->setFetchModeClass(__CLASS__);
 
         return $this->db->fetchAll();
-    }    
+    }
 }

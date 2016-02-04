@@ -23,6 +23,14 @@ $di->set('MyCommentController', function() use ($di) {
     return $controller;
 });
 
+// Add a controller for users
+$di->set('UsersController', function() use ($di) {
+    $controller = new Anax\Users\UsersController();
+    $controller->setDI($di);
+    return $controller;
+});
+
+
 // Add routes
 $app->router->add('', function() use ($app) {
     $app->theme->setTitle("Om Stefan");
@@ -138,6 +146,24 @@ $app->router->add('source', function() use ($app) {
         'content' => $source->View(),
     ]);
 });
+
+// Route to overview page for db-models functionality
+$app->router->add('db-models', function () use ($app) {
+
+    $app->theme->setTitle("Testa databasdrivna modeller");
+
+    $app->views->add('me/links', [
+        'title' => "Testa databasdrivna modeller",
+        'content' => "Länkar till de routes som finns för att testa databasdrivna modeller.",
+        'pagelinks' => [
+            [
+                'href' => $app->url->create('users/setup'),
+                'text' => "Setup (skapa tabell för användare och lägg in grunddata)",
+            ],
+        ],
+    ]);
+});
+
 
 $app->router->handle();
 $app->theme->render();
