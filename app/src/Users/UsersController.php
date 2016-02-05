@@ -237,8 +237,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $user->deleted = null;
         $user->save();
 
-        // TODO: Remove dbtest.php when rewrite is OK
-        $url = $this->url->create('dbtest.php/users/id/' . $id);
+        $url = $this->url->create('users/id/' . $id);
         $this->response->redirect($url);
     }
 
@@ -261,6 +260,73 @@ class UsersController implements \Anax\DI\IInjectionAware
         ]);
     }
 
+
+    /**
+     * Update a user.
+     *
+     * @param int $id of user to edit
+     *
+     * @return void
+     */
+    public function updateAction($id = null)
+    {
+        if (!isset($id)) {
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return;
+        }
+
+        $user = $this->users->find($id);
+
+        // Display form to edit user
+        $form = $this->form->create([], [
+
+            'name' => [
+                'type'        => 'text',
+                'label'       => 'Namn:',
+                'value'       => $user->name,
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'email' => [
+                'type'        => 'text',
+                'label'       => 'E-post:',
+                'value'       => $user->email,
+                'required'    => true,
+                'validation'  => ['not_empty', 'email_adress'],
+            ],
+            'submit' => [
+                'type'      => 'submit',
+                'callback'  => function () {
+                    $now = gmdate('Y-m-d H:i:s');
+
+                    $userSaved = $this->users->save([
+                        'id' => $this->users->id,
+                        'email' => $this->form->Value('email'),
+                        'name' => $this->form->Value('name'),
+                        'updated' => $now,
+                    ]);
+
+                    if($userSaved) {
+                        $url = $this->url->create('users/id/' . $this->users->id);
+                        $this->response->redirect($url);
+                        return true;
+                    }
+                    // TODO: Should have some error handling here
+                }
+            ],
+        ]);
+        $form->check();
+
+        $this->di->theme->setTitle("Redigera användare");
+        $this->di->views->add('users/page', [
+            'title' => "Redigera användare",
+            'content' => $form->getHTML()
+        ]);
+    }
 
     /**
      * Utility for adding a  new user.
