@@ -10,18 +10,6 @@ class UsersController implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
 
-    // TODO: Perhaps this should be in the model?
-    private $columnDefs =             [
-                    'id'       => ['integer', 'primary key', 'not null', 'auto_increment'],
-                    'acronym'  => ['varchar(20)', 'unique', 'not null'],
-                    'email'    => ['varchar(80)'],
-                    'name'     => ['varchar(80)'],
-                    'password' => ['varchar(255)'],
-                    'created'  => ['datetime'],
-                    'updated'  => ['datetime'],
-                    'deleted'  => ['datetime'],
-                    'active'   => ['datetime'],
-                ];
 
     /**
      * Initialize the controller.
@@ -41,7 +29,19 @@ class UsersController implements \Anax\DI\IInjectionAware
      * @return void
      */
     public function setupAction() {
-        $this->users->createTable($columnDefs);
+        $this->users->createTable(
+            [
+                'id'       => ['integer', 'primary key', 'not null', 'auto_increment'],
+                'acronym'  => ['varchar(20)', 'unique', 'not null'],
+                'email'    => ['varchar(80)'],
+                'name'     => ['varchar(80)'],
+                'password' => ['varchar(255)'],
+                'created'  => ['datetime'],
+                'updated'  => ['datetime'],
+                'deleted'  => ['datetime'],
+                'active'   => ['datetime'],
+            ]
+        );
 
         $this->add('admin', 'Administrator');
         $this->add('doe', 'John/Jane Doe');
@@ -60,10 +60,25 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $all = $this->users->findAll();
 
-        $this->theme->setTitle("List all users");
+        $baseUrl = $this->url->create('users');
+
+        $actionUrls = [
+            'view'       => $baseUrl . '/id/',
+            'edit'       => $baseUrl . '/update/',
+            'softDelete' => $baseUrl . '/soft-delete/',
+            'unDelete'   => $baseUrl . '/un-delete/',
+            'delete'     => $baseUrl . '/delete/',
+            'activate'   => $baseUrl . '/activate/',
+            'deactivate' => $baseUrl . '/deactivate/',
+
+
+        ];
+
+        $this->theme->setTitle("Visa alla användare");
         $this->views->add('users/list-all', [
             'users' => $all,
-            'title' => "View all users",
+            'title' => "Visa alla användare",
+            'urls' => $actionUrls,
         ]);
     }
 
