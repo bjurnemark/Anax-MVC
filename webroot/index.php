@@ -164,6 +164,10 @@ $app->router->add('db-models', function () use ($app) {
                 'href' => $app->url->create('users/add'),
                 'text' => "Lägg till en användare",
             ],
+            [
+                'href' => $app->url->create('users/list'),
+                'text' => "Visa alla användare",
+            ],
 
         ],
     ]);

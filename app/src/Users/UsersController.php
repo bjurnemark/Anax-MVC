@@ -10,6 +10,19 @@ class UsersController implements \Anax\DI\IInjectionAware
 {
     use \Anax\DI\TInjectable;
 
+    // TODO: Perhaps this should be in the model?
+    private $columnDefs =             [
+                    'id'       => ['integer', 'primary key', 'not null', 'auto_increment'],
+                    'acronym'  => ['varchar(20)', 'unique', 'not null'],
+                    'email'    => ['varchar(80)'],
+                    'name'     => ['varchar(80)'],
+                    'password' => ['varchar(255)'],
+                    'created'  => ['datetime'],
+                    'updated'  => ['datetime'],
+                    'deleted'  => ['datetime'],
+                    'active'   => ['datetime'],
+                ];
+
     /**
      * Initialize the controller.
      *
@@ -28,19 +41,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      * @return void
      */
     public function setupAction() {
-        $this->users->createTable(
-            [
-                'id'       => ['integer', 'primary key', 'not null', 'auto_increment'],
-                'acronym'  => ['varchar(20)', 'unique', 'not null'],
-                'email'    => ['varchar(80)'],
-                'name'     => ['varchar(80)'],
-                'password' => ['varchar(255)'],
-                'created'  => ['datetime'],
-                'updated'  => ['datetime'],
-                'deleted'  => ['datetime'],
-                'active'   => ['datetime'],
-            ]
-        );
+        $this->users->createTable($columnDefs);
 
         $this->add('admin', 'Administrator');
         $this->add('doe', 'John/Jane Doe');
