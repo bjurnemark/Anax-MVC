@@ -83,6 +83,11 @@ return [
                         'title' => 'Lägg till användare'
                     ],
 
+                    'active'  => [
+                        'text'  => 'Visa aktiva användare',
+                        'url'   => $this->di->get('url')->create('users/active'),
+                        'title' => 'Visa aktiva användare'
+                    ],
                     'setup' => [
                         'text'  => 'Återställ databasen',
                         'url'   => $this->di->get('url')->create('users/setup'),

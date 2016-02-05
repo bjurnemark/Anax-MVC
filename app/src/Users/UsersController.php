@@ -20,6 +20,17 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $this->users = new \Bjurnemark\Users\User();
         $this->users->setDI($this->di);
+
+        $baseUrl = $this->url->create('users');
+        $this->actionUrls = [
+            'view'       => $baseUrl . '/id/',
+            'edit'       => $baseUrl . '/update/',
+            'softDelete' => $baseUrl . '/soft-delete/',
+            'unDelete'   => $baseUrl . '/un-delete/',
+            'delete'     => $baseUrl . '/delete/',
+            'activate'   => $baseUrl . '/activate/',
+            'deactivate' => $baseUrl . '/deactivate/',
+        ];
     }
 
 
@@ -60,25 +71,12 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $all = $this->users->findAll();
 
-        $baseUrl = $this->url->create('users');
-
-        $actionUrls = [
-            'view'       => $baseUrl . '/id/',
-            'edit'       => $baseUrl . '/update/',
-            'softDelete' => $baseUrl . '/soft-delete/',
-            'unDelete'   => $baseUrl . '/un-delete/',
-            'delete'     => $baseUrl . '/delete/',
-            'activate'   => $baseUrl . '/activate/',
-            'deactivate' => $baseUrl . '/deactivate/',
-
-
-        ];
 
         $this->theme->setTitle("Visa alla användare");
         $this->views->add('users/list-all', [
             'users' => $all,
             'title' => "Visa alla användare",
-            'urls' => $actionUrls,
+            'urls' => $this->actionUrls,
         ]);
     }
 
@@ -225,7 +223,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $user->deleted = $now;
         $user->save();
 
-        $url = $this->url->create('users/id/' . $id);
+        $url = $this->url->create('users/list');
         $this->response->redirect($url);
     }
 
@@ -252,7 +250,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $user->deleted = null;
         $user->save();
 
-        $url = $this->url->create('users/id/' . $id);
+        $url = $this->url->create('users/list/');
         $this->response->redirect($url);
     }
 
@@ -268,10 +266,11 @@ class UsersController implements \Anax\DI\IInjectionAware
             ->andWhere('deleted is NULL')
             ->execute();
 
-        $this->theme->setTitle("Users that are active");
+        $this->theme->setTitle("Aktiva användare");
         $this->views->add('users/list-all', [
             'users' => $all,
-            'title' => "Users that are active",
+            'title' => "Aktiva användare",
+            'urls' => $this->actionUrls,
         ]);
     }
 
