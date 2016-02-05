@@ -78,10 +78,9 @@ class UsersController implements \Anax\DI\IInjectionAware
     {
         $user = $this->users->find($id);
 
-        $this->theme->setTitle("View user with id");
-        $this->views->add('users/view', [
+        $this->theme->setTitle("Visa användare");
+        $this->views->add('users/details', [
             'user' => $user,
-            'title' => "View user with id = $id",
         ]);
     }
 

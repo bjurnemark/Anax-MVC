@@ -58,7 +58,38 @@ return [
         'db-models'  => [
             'text'  => 'DB/Modeller',
             'url'   => $this->di->get('url')->create('db-models'),
-            'title' => 'Databasdrivna modeller'
+            'title' => 'Databasdrivna modeller',
+
+            'submenu' => [
+
+                'items' => [
+
+                    'user'  => [
+                        'text'  => 'Visa användare',
+                        'url'   => $this->di->get('url')->create('users/id'),
+                        'title' => 'Visa användare'
+                    ],
+
+                    'list'  => [
+                        'text'  => 'Visa alla användare',
+                        'url'   => $this->di->get('url')->create('users/list'),
+                        'title' => 'Visa alla användare'
+                    ],
+
+                    'add'  => [
+                        'text'  => 'Lägg till användare',
+                        'url'   => $this->di->get('url')->create('users/add'),
+                        'title' => 'Lägg till användare'
+                    ],
+
+                    'setup' => [
+                        'text'  => 'Återställ databasen',
+                        'url'   => $this->di->get('url')->create('users/setup'),
+                        'title' => 'Återställ databasen'
+
+                        ]
+                ],
+            ],
         ],
 
         'source'  => [
