@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\Users;
+namespace Bjurnemark\Users;
 
 /**
  * Model for Users.

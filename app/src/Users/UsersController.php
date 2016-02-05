@@ -1,6 +1,6 @@
 <?php
 
-namespace Anax\Users;
+namespace Bjurnemark\Users;
 
 /**
  * A controller for users and admin related events.
@@ -17,7 +17,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function initialize()
     {
-        $this->users = new \Anax\Users\User();
+        $this->users = new \Bjurnemark\Users\User();
         $this->users->setDI($this->di);
     }
 

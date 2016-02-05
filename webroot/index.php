@@ -25,7 +25,7 @@ $di->set('MyCommentController', function() use ($di) {
 
 // Add a controller for users
 $di->set('UsersController', function() use ($di) {
-    $controller = new Anax\Users\UsersController();
+    $controller = new Bjurnemark\Users\UsersController();
     $controller->setDI($di);
     return $controller;
 });
