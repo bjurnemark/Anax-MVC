@@ -160,6 +160,11 @@ $app->router->add('db-models', function () use ($app) {
                 'href' => $app->url->create('users/setup'),
                 'text' => "Setup (skapa tabell för användare och lägg in grunddata)",
             ],
+            [
+                'href' => $app->url->create('users/add'),
+                'text' => "Lägg till en användare",
+            ],
+
         ],
     ]);
 });

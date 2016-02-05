@@ -87,20 +87,67 @@ class UsersController implements \Anax\DI\IInjectionAware
     /**
      * Add new user.
      *
-     * @param string $acronym of user to add.
-     *
      * @return void
      */
-    public function addAction($acronym = null)
+    public function addAction()
     {
-        if (!isset($acronym)) {
-            die("Missing acronym");
-        }
+        // Display form to add user
+        $form = $this->form->create([], [
 
-        $this->add($acronym);
+            'name' => [
+                'type'        => 'text',
+                'label'       => 'Namn:',
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'email' => [
+                'type'        => 'text',
+                'label'       => 'E-post:',
+                'required'    => true,
+                'validation'  => ['not_empty', 'email_adress'],
+            ],
+            'acronym' => [
+                'type'        => 'text',
+                'label'       => 'Användar-id:',
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'password' => [
+                'type'        => 'password',
+                'label'       => 'Lösenord:',
+                'required'    => true,
+                'validation'  => ['not_empty'],
+            ],
+            'submit' => [
+                'type'      => 'submit',
+                'callback'  => function () {
+                    $now = gmdate('Y-m-d H:i:s');
 
-        $url = $this->url->create('users/id/' . $this->users->id);
-        $this->response->redirect($url);
+                    $userSaved = $this->users->save([
+                        'acronym' => $this->form->Value('acronym'),
+                        'email' => $this->form->Value('email'),
+                        'name' => $this->form->Value('name'),
+                        'password' => password_hash($this->form->Value('password'), PASSWORD_DEFAULT),
+                        'created' => $now,
+                        'active' => $now,
+                    ]);
+
+                    if($userSaved) {
+                        $url = $this->url->create('users/id/' . $this->users->id);
+                        $this->response->redirect($url);
+                        return true;
+                    }
+                    // TODO: Should have some error handling here
+                }
+            ],
+        ]);
+        $form->check();
+
+        $this->di->theme->setTitle("Lägg till användare");
+        $this->di->views->add('users/page', [
+            'title' => "Lägg till användare",
+            'content' => $form->getHTML()
+        ]);
     }
 
 
