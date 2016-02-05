@@ -76,6 +76,15 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function idAction($id = null)
     {
+        if (!isset($id)) {
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return;
+        }
+
         $user = $this->users->find($id);
 
         $this->theme->setTitle("Visa användare");
@@ -161,14 +170,17 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function deleteAction($id = null)
     {
         if (!isset($id)) {
-            die("Missing id");
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return;
         }
 
         $this->users->delete($id);
 
-        // TODO: Remove list if I add a default route to frontcontroller
-        // TODO: Remove dbtest.php when rewrite is OK
-        $url = $this->url->create('dbtest.php/users/list');
+        $url = $this->url->create('users/list');
         $this->response->redirect($url);
     }
 
@@ -183,7 +195,12 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function softDeleteAction($id = null)
     {
         if (!isset($id)) {
-            die("Missing id");
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return;
         }
 
         $now = gmdate('Y-m-d H:i:s');
@@ -193,8 +210,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $user->deleted = $now;
         $user->save();
 
-        // TODO: Remove dbtest.php when rewrite is OK
-        $url = $this->url->create('dbtest.php/users/id/' . $id);
+        $url = $this->url->create('users/id/' . $id);
         $this->response->redirect($url);
     }
 
@@ -208,7 +224,12 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function unDeleteAction($id = null)
     {
         if (!isset($id)) {
-            die("Missing id");
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return;
         }
 
         $user = $this->users->find($id);

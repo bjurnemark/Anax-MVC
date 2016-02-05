@@ -64,9 +64,10 @@ return [
 
                 'items' => [
 
+                    // TODO: Endast tillgänglig från Överblick
                     'user'  => [
                         'text'  => 'Visa användare',
-                        'url'   => $this->di->get('url')->create('users/id'),
+                        'url'   => $this->di->get('url')->create('users/id/1'),
                         'title' => 'Visa användare'
                     ],
 
