@@ -61,9 +61,9 @@ class UsersController implements \Anax\DI\IInjectionAware
             ]
         );
 
-        $newUsers = ['Adam', 'Bertil', 'Cesar', 'David', 'Erik', 'Filip'];
+        $newUsers = ['adam', 'bertil', 'cesar', 'david', 'erik', 'filip'];
         foreach ($newUsers as $usr) {
-            $this->add(strtolower($usr), $usr);
+            $this->add($usr);
         }
 
         $url = $this->url->create('users/list/');
@@ -165,7 +165,7 @@ class UsersController implements \Anax\DI\IInjectionAware
                         $this->response->redirect($url);
                         return true;
                     }
-                    // TODO: Should have some error handling here
+                    // Should have some error handling here
                 }
             ],
         ]);
@@ -373,13 +373,14 @@ class UsersController implements \Anax\DI\IInjectionAware
      * Utility for adding a user.
      *
      * @param string $acronym of user to add.
-     * TODO: ADD PARAMS
+     * @param string $name of user to add.
+     * @param string $password for user to add (default is acronym).
      *
      * @return void
      */
     protected function add($acronym, $name = null, $password = null)
     {
-        $name = isset($name) ? $name : $acronym;
+        $name = isset($name) ? $name : ucfirst($acronym) . ' ' . ucfirst($acronym) . 'son';
         $password = isset($password) ? $password : $acronym;
         $now = gmdate('Y-m-d H:i:s');
 
@@ -388,7 +389,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->users->create([
             'acronym ' => $acronym,
             'email'    => $acronym . '@mail.se',
-            'name'     => $name . ' ' . $name . 'son',
+            'name'     => $name,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'created'  => $now,
             'active'   => $now,
