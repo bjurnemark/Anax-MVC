@@ -1,21 +1,23 @@
-<hr>
+<?php
 
-<h2>Kommentarer</h2>
+echo "<hr><h2>Kommentarer</h2>";
 
-<?php if (is_array($comments) && count($comments) > 0) : ?>
-<div class='comments'>
-<?php foreach ($comments as $id => $comment) : ?>
-<div class='comment'>
-<a class='comment-name' href="mailto:<?=$comment['mail']?>"><?=$comment['name']?></a>
-<span class='comment-time'> <?=$comment['timediff']?></span>
-<div class='comment-content'><?=$comment['content']?></div>
-<div class='comment-links'>
-<a href="<?=$this->url->create('my_comment/edit/'. $comment['page_id'] . '/' . $comment['timestamp'])?>" class='discrete-link'>Redigera</a> |
-<a href="<?=$this->url->create('my_comment/remove/'. $comment['page_id'] . '/' . $comment['timestamp'])?>" class='discrete-link'>Radera</a>
-</div>
-</div>
-<?php endforeach; ?>
-</div>
-<?php else : ?>
-<p>Bli den förste att kommentera ämnet!</p>
-<?php endif; ?>
+if (is_array($comments) && count($comments) > 0) {
+    echo "<div class='comments'>";
+
+    foreach ($comments as $id => $comment) {
+        echo "<div class='comment'>";
+        echo "<a class='comment-name' href='mailto:{$comment->email}'>{$comment->name}</a>";
+        echo "<span class='comment-time'>{$comment->updated}</span>";
+        echo "<div class='comment-content'>{$comment->content}</div>";
+        echo "<div class='comment-links'>";
+        echo "<a href=" . $this->url->create('comment/update/' . $comment->id) . " class='discrete-link'>Redigera</a> | ";
+        echo "<a href=" . $this->url->create('comment/delete/' . $comment->id) . " class='discrete-link'>Radera</a>";
+        echo "</div>";
+        echo "</div>";
+
+    }
+    echo "</div>";
+} else {
+    echo "<p>Bli den förste att kommentera ämnet!</p>";
+}

@@ -40,7 +40,8 @@ return [
                               .  "Copyright (c) Stefan Bjurnemark (stefan.bjurnemark@gmail.com)"
                               .  "<div class='right'>"
                               .  "<a class='discrete-link' href='https://github.com/bjurnemark/Anax-MVC'>Anax-MVC på GitHub</a> | "
-                              .  "<a class='discrete-link' href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a>"
+                              .  "<a class='discrete-link' href='http://validator.w3.org/unicorn/check?ucn_uri=referer&amp;ucn_task=conformance'>Unicorn</a> | "
+                              .  "<a class='discrete-link' href='" . $this->di->url->create('debug') . "'>Debug</a>"
                               .  "</div></div>"
             ],
             'sort'     => -1

@@ -17,8 +17,8 @@ $app->navbar->configure(ANAX_APP_PATH . 'config/navbar_me.php');
 $app->theme->configure(ANAX_APP_PATH . 'config/theme_me.php');
 
 // Add the comment controller to the DI
-$di->set('MyCommentController', function() use ($di) {
-    $controller = new Bjurnemark\Comment\MyCommentController();
+$di->set('CommentController', function() use ($di) {
+    $controller = new Bjurnemark\Comment\CommentController();
     $controller->setDI($di);
     return $controller;
 });
@@ -84,25 +84,25 @@ $app->router->add('linux', function() use ($app) {
     // Add the base view/content for this page
     $content = $app->fileContent->get('linux.md');
     $content = $app->textFilter->doFilter($content, 'markdown');
-    $app->views->add('comment/index', [
+    $app->views->add('default/blankpage', [
         'content' => $content,
     ]);
 
     // Run MyCommentController/viewByKeyAction (adds comments-view)
     $app->dispatcher->forward([
-        'controller' => 'my_comment',
+        'controller' => 'comment',
         'action'     => 'view_by_key',
         'params'     => ['linux'],
     ]);
 
     // Add the comment form view
-    $app->views->add('comment/form', [
-        'mail'      => null,
-        'name'      => null,
-        'content'   => null,
-        'output'    => null,
-        'page_id'   => 'linux',
-    ]);
+    // $app->views->add('comment/form', [
+    //     'mail'      => null,
+    //     'name'      => null,
+    //     'content'   => null,
+    //     'output'    => null,
+    //     'page_id'   => 'linux',
+    // ]);
 });
 
 $app->router->add('ramverk', function() use ($app) {
@@ -111,25 +111,25 @@ $app->router->add('ramverk', function() use ($app) {
     // Add the base view/content for this page
     $content = $app->fileContent->get('ramverk.md');
     $content = $app->textFilter->doFilter($content, 'markdown');
-    $app->views->add('comment/index', [
+    $app->views->add('default/blankpage', [
         'content' => $content,
     ]);
 
     // Run MyCommentController/viewByKeyAction (adds comments-view)
     $app->dispatcher->forward([
-        'controller' => 'my_comment',
+        'controller' => 'comment',
         'action'     => 'view_by_key',
         'params'     => ['ramverk'],
     ]);
 
     // Add the comment form view
-    $app->views->add('comment/form', [
-        'mail'      => null,
-        'name'      => null,
-        'content'   => null,
-        'output'    => null,
-        'page_id'   => 'ramverk',
-    ]);
+    // $app->views->add('comment/form', [
+    //     'mail'      => null,
+    //     'name'      => null,
+    //     'content'   => null,
+    //     'output'    => null,
+    //     'page_id'   => 'ramverk',
+    // ]);
 });
 
 $app->router->add('source', function() use ($app) {
@@ -144,6 +144,18 @@ $app->router->add('source', function() use ($app) {
 
     $app->views->add('me/source', [
         'content' => $source->View(),
+    ]);
+});
+
+// Display debug info
+$app->router->add('debug', function() use ($app) {
+    $app->theme->setTitle("Debugging information");
+
+    $content = "<pre>" . print_r($app->session->get('comments', []), 1) . "</pre>";
+    $content = "<p><a href='" . $app->url->create('comment/setup') . "'>Initilaisera kommentars-tabell</a></p>";
+
+    $app->views->add('me/page', [
+        'content' => $content,
     ]);
 });
 
