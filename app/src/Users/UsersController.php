@@ -116,7 +116,11 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function addAction()
     {
         // Display form to add user
-        $form = $this->form->create([], [
+        $form = $this->form->create([
+            'id'     => 'formAddUser',
+            'legend' => 'Lägg till användare',
+        ],
+        [
 
             'name' => [
                 'type'        => 'text',
@@ -314,7 +318,12 @@ class UsersController implements \Anax\DI\IInjectionAware
         $user = $this->users->find($id);
 
         // Display form to edit user
-        $form = $this->form->create([], [
+        $form = $this->form->create(
+        [
+            'id'     => 'formEditUser',
+            'legend' => 'Redigera användare',
+        ],
+        [
 
             'name' => [
                 'type'        => 'text',
@@ -347,7 +356,7 @@ class UsersController implements \Anax\DI\IInjectionAware
                         $this->response->redirect($url);
                         return true;
                     }
-                    // TODO: Should have some error handling here
+                    // Should have some error handling here
                 }
             ],
         ]);
