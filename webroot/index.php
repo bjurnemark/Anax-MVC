@@ -154,21 +154,35 @@ $app->router->add('db-models', function () use ($app) {
 
     $app->views->add('me/links', [
         'title' => "Testa databasdrivna modeller",
-        'content' => "Länkar till de routes som finns för att testa databasdrivna modeller.",
+        'content' => "<p>Länkar till några routes som finns för att testa databasdrivna modeller.</p>" .
+                     "<p>Routes som är beroende av ett användar-id (<code>id, update, soft-delete/un-delete, " .
+                     "activate/deactivate, delete</code>) kan testas från sidan " .
+                     "<a href='" . $app->url->create('users/list'). "'>Alla användare</a>.",
         'pagelinks' => [
             [
-                'href' => $app->url->create('users/setup'),
-                'text' => "Setup (skapa tabell för användare och lägg in grunddata)",
+                'href' => $app->url->create('users/list'),
+                'text' => "Alla användare",
             ],
             [
                 'href' => $app->url->create('users/add'),
-                'text' => "Lägg till en användare",
+                'text' => "Lägg till användare",
             ],
             [
-                'href' => $app->url->create('users/list'),
-                'text' => "Visa alla användare",
+                'href' => $app->url->create('users/active'),
+                'text' => "Aktiva, ej raderade, användare",
             ],
-
+            [
+                'href' => $app->url->create('users/inactive'),
+                'text' => "Inaktiva användare",
+            ],
+            [
+                'href' => $app->url->create('users/in-trash'),
+                'text' => "Papperskorgen",
+            ],
+            [
+                'href' => $app->url->create('users/setup'),
+                'text' => "Återställ databasen",
+            ],
         ],
     ]);
 });

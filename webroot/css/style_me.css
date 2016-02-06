@@ -43,3 +43,23 @@
     text-decoration: none;
     color: inherit;
 }
+
+/*
+ *  Style tables
+ */
+th, td {
+    text-align: left;
+    padding: 0 1em;
+}
+
+td.action {
+    text-align: center;
+}
+
+/*
+ * Style single user overview
+ */
+.label, .data {
+    display: inline-block;
+    min-width: 128px;
+}

@@ -10,30 +10,34 @@
       . "<th>Användare</th>"
       . "<th>Namn</th>"
       . "<th>E-post</th>"
-      . "<th>Redigera</th>"
-      . "<th>Kasta</th>"
-      . "<th>Aktivera</th>"
-      . "<th>Radera permanent</th></tr>";
+      . "<th></th>"
+      . "<th></th>"
+      . "<th></th>"
+      . "<th></th>"
+      . "<th></th></tr>\n";
 
 foreach ($users as $user) {
+    // Make link do soft delete or undelete depending on current status
     $trashLink = isset($user->deleted) ?
         "<a href='" . $urls['unDelete'] . $user->id . "'><i class='fa fa-undo'>" :
         "<a href='" . $urls['softDelete'] . $user->id . "'><i class='fa fa-trash'>"
         ;
 
+    // Make link do activate or deactivate depending on current status
     $activateLink = isset($user->active) ?
         "<a href='" . $urls['deactivate'] . $user->id . "'><i class='fa fa-pause-circle-o'>" :
         "<a href='" . $urls['activate'] .   $user->id . "'><i class='fa fa-play-circle-o'>"
         ;
 
     echo "<tr>"
-      . "<td><a href='" . $urls['view'] . $user->id . "'><i class='fa fa-search'></i></a> $user->acronym</td>\n"
+      . "<td>$user->acronym</td>"
       . "<td>$user->name</td>"
       . "<td>$user->email</td>"
-      . "<td><a href='" . $urls['edit'] . $user->id . "'><i class='fa fa-pencil'></i></a></td>"
-      . "<td>$trashLink</td>"
-      . "<td>$activateLink</td>"
-      . "<td><a href='" . $urls['delete'] . $user->id . "'><i class='fa fa-ban'></a></td>";
+      . "<td class='action'><a href='" . $urls['view'] . $user->id . "'><i class='fa fa-search'></i></a></td>"
+      . "<td class='action'><a href='" . $urls['edit'] . $user->id . "'><i class='fa fa-pencil'></i></a></td>"
+      . "<td class='action'>$trashLink</td>"
+      . "<td class='action'>$activateLink</td>"
+      . "<td class='action'><a href='" . $urls['delete'] . $user->id . "'><i class='fa fa-ban'></a></td></tr>\n";
 }
 
 echo "</table>";

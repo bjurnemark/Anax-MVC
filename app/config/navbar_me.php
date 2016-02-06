@@ -64,17 +64,10 @@ return [
 
                 'items' => [
 
-                    // TODO: Endast tillgänglig från Överblick
-                    'user'  => [
-                        'text'  => 'Visa användare',
-                        'url'   => $this->di->get('url')->create('users/id/1'),
-                        'title' => 'Visa användare'
-                    ],
-
                     'list'  => [
-                        'text'  => 'Visa alla användare',
+                        'text'  => 'Alla användare',
                         'url'   => $this->di->get('url')->create('users/list'),
-                        'title' => 'Visa alla användare'
+                        'title' => 'Alla användare'
                     ],
 
                     'add'  => [
@@ -84,16 +77,28 @@ return [
                     ],
 
                     'active'  => [
-                        'text'  => 'Visa aktiva användare',
+                        'text'  => 'Aktiva användare',
                         'url'   => $this->di->get('url')->create('users/active'),
-                        'title' => 'Visa aktiva användare'
+                        'title' => 'Aktiva användare'
                     ],
+
+                    'inactive'  => [
+                        'text'  => 'Inaktiva användare',
+                        'url'   => $this->di->get('url')->create('users/inactive'),
+                        'title' => 'Inaktiva användare'
+                    ],
+
+                    'trash'  => [
+                        'text'  => 'Papperskorgen',
+                        'url'   => $this->di->get('url')->create('users/in-trash'),
+                        'title' => 'Papperskorgen'
+                    ],
+
                     'setup' => [
                         'text'  => 'Återställ databasen',
                         'url'   => $this->di->get('url')->create('users/setup'),
                         'title' => 'Återställ databasen'
-
-                        ]
+                    ],
                 ],
             ],
         ],

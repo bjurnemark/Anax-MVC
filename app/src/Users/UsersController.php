@@ -31,6 +31,13 @@ class UsersController implements \Anax\DI\IInjectionAware
             'activate'   => $baseUrl . '/activate/',
             'deactivate' => $baseUrl . '/deactivate/',
         ];
+
+        $this->simpleCols = [
+            'id',
+            'acronym',
+            'email',
+            'name',
+        ];
     }
 
 
@@ -54,8 +61,10 @@ class UsersController implements \Anax\DI\IInjectionAware
             ]
         );
 
-        $this->add('admin', 'Administrator');
-        $this->add('doe', 'John/Jane Doe');
+        $newUsers = ['Adam', 'Bertil', 'Cesar', 'David', 'Erik', 'Filip'];
+        foreach ($newUsers as $usr) {
+            $this->add(strtolower($usr), $usr);
+        }
 
         $url = $this->url->create('users/list/');
         $this->response->redirect($url);
@@ -89,14 +98,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function idAction($id = null)
     {
-        if (!isset($id)) {
-            $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
-                'title' => "Felmeddelande",
-                'content' => "<p>Inget id satt</p>"
-            ]);
-            return;
-        }
+        if (!$this->isSetId($id)) return;
 
         $user = $this->users->find($id);
 
@@ -182,14 +184,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function deleteAction($id = null)
     {
-        if (!isset($id)) {
-            $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
-                'title' => "Felmeddelande",
-                'content' => "<p>Inget id satt</p>"
-            ]);
-            return;
-        }
+        if (!$this->isSetId($id)) return;
 
         $this->users->delete($id);
 
@@ -207,24 +202,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function softDeleteAction($id = null)
     {
-        if (!isset($id)) {
-            $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
-                'title' => "Felmeddelande",
-                'content' => "<p>Inget id satt</p>"
-            ]);
-            return;
-        }
-
-        $now = gmdate('Y-m-d H:i:s');
-
-        $user = $this->users->find($id);
-
-        $user->deleted = $now;
-        $user->save();
-
-        $url = $this->url->create('users/list');
-        $this->response->redirect($url);
+        $this->updateFieldAndList($id, 'deleted', gmdate('Y-m-d H:i:s'));
     }
 
     /**
@@ -236,23 +214,33 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function unDeleteAction($id = null)
     {
-        if (!isset($id)) {
-            $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
-                'title' => "Felmeddelande",
-                'content' => "<p>Inget id satt</p>"
-            ]);
-            return;
-        }
-
-        $user = $this->users->find($id);
-
-        $user->deleted = null;
-        $user->save();
-
-        $url = $this->url->create('users/list/');
-        $this->response->redirect($url);
+        $this->updateFieldAndList($id, 'deleted', null);
     }
+
+    /**
+     * Activate user.
+     *
+     * @param integer $id of user to activate.
+     *
+     * @return void
+     */
+    public function activateAction($id = null)
+    {
+        $this->updateFieldAndList($id, 'active', gmdate('Y-m-d H:i:s'));
+    }
+
+    /**
+     * Deactivate user.
+     *
+     * @param integer $id of user to deactivate.
+     *
+     * @return void
+     */
+    public function deactivateAction($id = null)
+    {
+        $this->updateFieldAndList($id, 'active', null);
+    }
+
 
     /**
      * List all active and not deleted users.
@@ -261,16 +249,53 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function activeAction()
     {
-        $all = $this->users->query()
+        $all = $this->users->query(implode(', ', $this->simpleCols))
             ->where('active IS NOT NULL')
-            ->andWhere('deleted is NULL')
+            ->andWhere('deleted IS NULL')
             ->execute();
 
         $this->theme->setTitle("Aktiva användare");
-        $this->views->add('users/list-all', [
+        $this->views->add('users/list-simple', [
             'users' => $all,
-            'title' => "Aktiva användare",
-            'urls' => $this->actionUrls,
+            'title' => "Aktiva, ej raderade användare",
+        ]);
+    }
+
+
+    /**
+     * List all soft-deleted users.
+     *
+     * @return void
+     */
+    public function inTrashAction()
+    {
+        $all = $this->users->query(implode(', ', $this->simpleCols))
+            ->where('deleted IS NOT NULL')
+            ->execute();
+
+        $this->theme->setTitle("Användare i papperskorgen");
+        $this->views->add('users/list-simple', [
+            'users' => $all,
+            'title' => "Användare i papperskorgen",
+        ]);
+    }
+
+
+    /**
+     * List inactive users.
+     *
+     * @return void
+     */
+    public function inactiveAction()
+    {
+        $all = $this->users->query(implode(', ', $this->simpleCols))
+            ->where('active IS NULL')
+            ->execute();
+
+        $this->theme->setTitle("Inaktiva användare");
+        $this->views->add('users/list-simple', [
+            'users' => $all,
+            'title' => "Inaktiva användare",
         ]);
     }
 
@@ -284,14 +309,7 @@ class UsersController implements \Anax\DI\IInjectionAware
      */
     public function updateAction($id = null)
     {
-        if (!isset($id)) {
-            $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
-                'title' => "Felmeddelande",
-                'content' => "<p>Inget id satt</p>"
-            ]);
-            return;
-        }
+        if (!$this->isSetId($id)) return;
 
         $user = $this->users->find($id);
 
@@ -343,7 +361,7 @@ class UsersController implements \Anax\DI\IInjectionAware
     }
 
     /**
-     * Utility for adding a  new user.
+     * Utility for adding a user.
      *
      * @param string $acronym of user to add.
      * TODO: ADD PARAMS
@@ -361,10 +379,50 @@ class UsersController implements \Anax\DI\IInjectionAware
         $this->users->create([
             'acronym ' => $acronym,
             'email'    => $acronym . '@mail.se',
-            'name'     => 'Mr/Mrs ' . $name,
+            'name'     => $name . ' ' . $name . 'son',
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'created'  => $now,
             'active'   => $now,
         ]);
+    }
+
+    /**
+     * Utility for verifying that an ID was supplied.
+     *
+     * @param string $id, the ID to use (or null).
+     *
+     * @return boolean true if $id is set, false otherwise
+     */
+    protected function isSetId($id) {
+        if (!isset($id)) {
+            $this->di->theme->setTitle("Felmeddelande");
+            $this->di->views->add('users/page', [
+                'title' => "Felmeddelande",
+                'content' => "<p>Inget id satt</p>"
+            ]);
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Utility for setting the value of a single field and listing all users
+     *
+     * @param string $id, the ID to use.
+     * @param string $field, the field to change.
+     * @param string $val, the value to set.
+     *
+     * @return void
+     */
+    protected function updateFieldAndList($id, $field, $val){
+        if (!$this->isSetId($id)) return;
+
+        $user = $this->users->find($id);
+
+        $user->$field = $val;
+        $user->save();
+
+        $url = $this->url->create('users/list');
+        $this->response->redirect($url);
     }
 }
