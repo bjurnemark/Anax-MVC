@@ -73,7 +73,7 @@ return [
         'title_append' => ' | phpmvc',
 
         // Stylesheets
-        'stylesheets' => ['css/style.css', 'css/navbar_me.css', 'css/style_me.css', 'css/comments.css', 'css/anax-grid/font-awesome-4.5.0/css/font-awesome.min.css'],
+        'stylesheets' => ['css/style.css', 'css/form.css', 'css/navbar_me.css', 'css/style_me.css', 'css/comments.css', 'css/anax-grid/font-awesome-4.5.0/css/font-awesome.min.css'],
 
         // Inline style
         'style' => null,

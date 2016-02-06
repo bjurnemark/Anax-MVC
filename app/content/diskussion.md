@@ -1,3 +1,3 @@
 Diskussions-sidor
 =================
-Huvudsida för diskussions-sidorna.
+Startsida för diskussions-sidorna.

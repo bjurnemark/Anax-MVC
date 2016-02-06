@@ -102,7 +102,6 @@ class CommentController implements \Anax\DI\IInjectionAware
     }
 
 
-
     /**
      * Add a comment.
      *
@@ -134,7 +133,7 @@ class CommentController implements \Anax\DI\IInjectionAware
                 'validation'  => ['not_empty', 'email_adress'],
             ],
                 'content' => [
-                'type'        => 'text',
+                'type'        => 'textarea',
                 'label'       => 'Kommentar:',
                 'required'    => true,
                 'validation'  => ['not_empty'],
@@ -170,7 +169,6 @@ class CommentController implements \Anax\DI\IInjectionAware
 
         $this->di->theme->setTitle("Lägg till kommentar");
         $this->di->views->add('default/blankpage', [
-            'title' => "Lägg till kommentar",
             'content' => $form->getHTML()
         ]);
     }
@@ -224,7 +222,7 @@ class CommentController implements \Anax\DI\IInjectionAware
                 'validation'  => ['not_empty', 'email_adress'],
             ],
             'content' => [
-                'type'        => 'text',
+                'type'        => 'textarea',
                 'label'       => 'Kommentar:',
                 'value'       => $comment->content,
                 'required'    => true,
@@ -255,9 +253,9 @@ class CommentController implements \Anax\DI\IInjectionAware
         ]);
         $form->check();
 
-        $this->di->theme->setTitle("Redigera användare");
+        $this->di->theme->setTitle("Redigera kommentar");
         $this->di->views->add('default/blankpage', [
-            'title' => "Redigera användare",
+            'title' => "Redigera kommentar",
             'content' => $form->getHTML()
         ]);
     }
@@ -288,5 +286,4 @@ class CommentController implements \Anax\DI\IInjectionAware
             'ip'       => '82.44.147.' . rand(0, 255)
         ]);
     }
-
 }

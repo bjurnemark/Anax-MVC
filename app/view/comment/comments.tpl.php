@@ -15,7 +15,6 @@ if (is_array($comments) && count($comments) > 0) {
         echo "<a href=" . $this->url->create('comment/delete/' . $comment->id) . " class='discrete-link'>Radera</a>";
         echo "</div>";
         echo "</div>";
-
     }
     echo "</div>";
 } else {

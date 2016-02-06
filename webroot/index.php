@@ -67,13 +67,10 @@ $app->router->add('discuss', function() use ($app) {
 
     $content = $app->fileContent->get('diskussion.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
+    $content .= "<p><a href='" . $app->url->create('comment/setup') . "'>Återställ kommentarer</a></p>";
 
-    $byline  = $app->fileContent->get('byline.md');
-    $byline  = $app->textFilter->doFilter($byline, 'shortcode, markdown');
-
-    $app->views->add('me/page', [
+    $app->views->add('default/blankpage', [
         'content' => $content,
-        'byline'  => $byline,
     ]);
 });
 
@@ -88,21 +85,19 @@ $app->router->add('linux', function() use ($app) {
         'content' => $content,
     ]);
 
-    // Run MyCommentController/viewByKeyAction (adds comments-view)
+    // Run CommentController/viewByKeyAction (adds comments-view)
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view_by_key',
         'params'     => ['linux'],
     ]);
 
-    // Add the comment form view
-    // $app->views->add('comment/form', [
-    //     'mail'      => null,
-    //     'name'      => null,
-    //     'content'   => null,
-    //     'output'    => null,
-    //     'page_id'   => 'linux',
-    // ]);
+    // Add a form for adding comments
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'add',
+        'params'     => ['linux'],
+    ]);
 });
 
 $app->router->add('ramverk', function() use ($app) {
@@ -115,21 +110,19 @@ $app->router->add('ramverk', function() use ($app) {
         'content' => $content,
     ]);
 
-    // Run MyCommentController/viewByKeyAction (adds comments-view)
+    // Run CommentController/viewByKeyAction (adds comments-view)
     $app->dispatcher->forward([
         'controller' => 'comment',
         'action'     => 'view_by_key',
         'params'     => ['ramverk'],
     ]);
 
-    // Add the comment form view
-    // $app->views->add('comment/form', [
-    //     'mail'      => null,
-    //     'name'      => null,
-    //     'content'   => null,
-    //     'output'    => null,
-    //     'page_id'   => 'ramverk',
-    // ]);
+    // Add a form for adding comments
+    $app->dispatcher->forward([
+        'controller' => 'comment',
+        'action'     => 'add',
+        'params'     => ['ramverk'],
+    ]);
 });
 
 $app->router->add('source', function() use ($app) {
@@ -151,10 +144,9 @@ $app->router->add('source', function() use ($app) {
 $app->router->add('debug', function() use ($app) {
     $app->theme->setTitle("Debugging information");
 
-    $content = "<pre>" . print_r($app->session->get('comments', []), 1) . "</pre>";
-    $content = "<p><a href='" . $app->url->create('comment/setup') . "'>Initilaisera kommentars-tabell</a></p>";
+    $content = "<p>This page can be used as a utility to display debug info or links.</p>";
 
-    $app->views->add('me/page', [
+    $app->views->add('default/blankpage', [
         'content' => $content,
     ]);
 });
@@ -198,7 +190,6 @@ $app->router->add('db-models', function () use ($app) {
         ],
     ]);
 });
-
 
 $app->router->handle();
 $app->theme->render();

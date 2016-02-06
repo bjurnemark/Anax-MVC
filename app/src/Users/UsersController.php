@@ -172,7 +172,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $form->check();
 
         $this->di->theme->setTitle("Lägg till användare");
-        $this->di->views->add('users/page', [
+        $this->di->views->add('default/blankpage', [
             'title' => "Lägg till användare",
             'content' => $form->getHTML()
         ]);
@@ -363,7 +363,7 @@ class UsersController implements \Anax\DI\IInjectionAware
         $form->check();
 
         $this->di->theme->setTitle("Redigera användare");
-        $this->di->views->add('users/page', [
+        $this->di->views->add('default/blankpage', [
             'title' => "Redigera användare",
             'content' => $form->getHTML()
         ]);
@@ -406,7 +406,7 @@ class UsersController implements \Anax\DI\IInjectionAware
     protected function isSetId($id) {
         if (!isset($id)) {
             $this->di->theme->setTitle("Felmeddelande");
-            $this->di->views->add('users/page', [
+            $this->di->views->add('default/blankpage', [
                 'title' => "Felmeddelande",
                 'content' => "<p>Inget id satt</p>"
             ]);
