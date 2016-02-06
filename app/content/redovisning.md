@@ -214,6 +214,79 @@ i `site.less` och  `responsive.less`.
 
 Kmom04: Databasdrivna modeller
 ------------------------------
+Det här var ett intressant men väldigt omfattande och arbetskrävande kursmoment!
+
+Ramverket Phalcon i sig och dess utvecklingsverktyg för att generera kod kan säkert
+spara mycket tid om man bygger större webb-platser. Modell-klassen med dess grundfunktionalitet
+för CRUD och för att hantera/söka i resultat känns kraftfull. Möjligheten att skapa
+relationer mellan modeller och att spara data i flera modeller med ett gemensamt
+save-kommando var snygg.
+
+I kurslitteraturen blev det svårt att följa med i kapitel 13 utan att ha läst kapitel
+12 eftersom resonemanget bygger vidare på exemplen från kapitel 12. Jag skummade
+introduktionen till exemplet för att kunna följa med bättre. Det var intressant att
+se hur författaren bygger upp strukturen och hur den möjliggör modell-lösningar
+liknande den i Phalcon, men det var svårt att hänga med i alla detaljer.
+
+För att förstå materialet djupare hade jag behövt gå tillbaka och arbete mer med
+exempelkoden. Redan när jag läste det började jag dock ana att det här skulle ta
+sin tid, så jag valde att gå vidare i arbetet och tills vidare nöja mig med att
+veta att materialet finns där och är värt att repetera om jag ska jobba med den
+här typen av lösningar.
+
+Övningarna gav en bra grund och översikt av CForm och CDatabase och gav även en
+bra kodbas att utgå från för uppgifterna. När jag arbetade med övningarna la jag
+mina user-klasser i Anax-strukturen, men när det var dags för uppgiften valde jag
+att flytta dem till app-strukturen eftersom de bör vara kopplade till appen
+snarare än ramverket.
+
+Medan jag höll på hittade jag ett mindre fel i `view/default/page.tpl.php` som
+inte stänger sina anchor-element. Från början var ambitionen att rapportera det
+som en pull-request, men det här momentet har redan tagit så mycket tid att det
+får räcka med en kommentar här.
+
+Jag tyckte det var svårt att veta vad som förväntades när man löste uppgifterna.
+Själva grundkraven är tydliga, men hur "snyggt" måste det vara? Det blev en medelväg
+för min del. Inte bara enklast möjliga, men inte heller särskilt mycket layout eller
+styling.
+
+###Vad tycker du om formulärhantering som visas i kursmomentet?
+Verkligen användbar! Den kan säkert spara mycket tid framöver. De bitar jag tycker
+är svårast att få grepp om är callback-funktionerna och vilken omgivning de kör
+i/påverkar.
+
+###Vad tycker du om databashanteringen som visas, föredrar du kanske traditionell SQL?
+Den kändes också mycket smidig och det var kul att se hur mycket kompaktare
+kommentars-funktionaliteten blev när man kunde bygga vidare på basklassen för
+datamodellen istället för att hantera allt "manuellt" i sessionen. Även om jag har
+jobbat ganska mycket med SQL förr föredrar jag att använda den här databashanteringen
+om det inte finns särskilda skäl att köra SQL direkt.
+
+###Gjorde du några vägval, eller extra saker, när du utvecklade basklassen för modeller?
+Nej, jag följde övningen ganska strikt. När det var dags att lägga till kommentars-funktionaliteten
+valde jag att också lägga till en funktion för `orderBy` men det var nog det enda.
+
+###Beskriv vilka vägval du gjorde och hur du valde att implementera kommentarer i databasen.
+Jag höll det enkelt och la all kommentars-information i samma tabell, inklusive sidnyckeln
+som anger vilken sida kommentaren hör till. Ur ett databasperspektiv borde den
+egentligen ligga i en egen tabell och refereras med en foreign key, men det
+kändes som för mycket arbete för en så enkel tabell. Mer generellt verkar
+datamodelleringsklassen ge störst utdelning när man kan koppla modellen direkt
+till en tabell.
+
+Både för kommentarerna och användarna blev mina modeller helt tomma underklasser
+till `CDatabaseModel`. Den hantering som behövs sköts i första hand i motsvarande
+kontroller utom för formattering och presentation som hamnade i vyerna.
+
+Kontrollern för user-klassen hade flera aktions som var ganska lika varandra
+(`soft-delete, undelete, activate, deactivate`). Där flyttade jag ut en
+del kod till gemensamma utility-funktioner.
+
+###Gjorde du extrauppgiften? Beskriv i så fall hur du tänkte och vilket resultat du fick.
+Nix, det fick vara. Det här var som sagt ett stort kursmoment och jag tror att
+jag lagt ungefär 35 timmar på det, så det får räcka.
+
+
 
 Kmom05: Bygg ut ramverket
 -------------------------

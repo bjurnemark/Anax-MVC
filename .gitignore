@@ -6,6 +6,8 @@
 *.sqlite
 *.log
 
+# Config files with passwords
+/app/config/database_*
 
 # OS generated files
 .DS_Store
