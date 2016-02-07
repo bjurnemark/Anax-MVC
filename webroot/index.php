@@ -68,6 +68,8 @@ $app->router->add('discuss', function() use ($app) {
     $content = $app->fileContent->get('diskussion.md');
     $content = $app->textFilter->doFilter($content, 'shortcode, markdown');
     $content .= "<p><a href='" . $app->url->create('comment/setup') . "'>Återställ kommentarer</a></p>";
+    $content .= "<p><a href='" . $app->url->create('linux')   . "'>Sida med kommentarer om Linux</a></p>";
+    $content .= "<p><a href='" . $app->url->create('ramverk') . "'>Sida med kommentarer om ramverk</a></p>";
 
     $app->views->add('default/blankpage', [
         'content' => $content,
