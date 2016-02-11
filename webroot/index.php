@@ -30,6 +30,13 @@ $di->set('UsersController', function() use ($di) {
     return $controller;
 });
 
+// Add package controller
+$di->set('PackageController', function() use ($di) {
+    $controller = new Bjurnemark\Package\PackageController();
+    $controller->setDI($di);
+    return $controller;
+});
+
 
 // Add routes
 $app->router->add('', function() use ($app) {

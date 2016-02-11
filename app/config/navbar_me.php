@@ -103,6 +103,13 @@ return [
             ],
         ],
 
+        'package'  => [
+            'text'  => 'Paket',
+            'url'   => $this->di->get('url')->create('package/index'),
+            'title' => 'Paket'
+        ],
+
+
         'source'  => [
             'text'  => 'Källkod',
             'url'   => $this->di->get('url')->create('source'),
