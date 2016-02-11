@@ -294,28 +294,33 @@ Det här var ett roligt kursmoment. Skoj att själv få välja vad paketet skull
 och att få arbeta igenom alla stegen med att skapa, testa, dokumentera och publicera
 ett paket.
 
-En del som jag reflekterade över var hur mycket mer tid det tar att komma till en
-nivå där jag vill publicera paketet jämfört med att ha något som jag känns "good enough"
-för eget bruk.
+En erfarenhet var hur mycket mer tid det tar att komma till en nivå där jag vill
+publicera paketet jämfört med att ha något som känns "good enough" för eget bruk.
 
 Ett par av argumenten för mikro-ramverk kändes bekanta från filosofin bakom Unix.
 
 Mikro-ramverk:
-> Building small, single-purpose libraries.
+ > Building small, single-purpose libraries.
+ >
+ > Using small things that work together to solve larger problems.
 
-> Using small things that work together to solve larger problems.
+Unix ([ref](https://en.wikipedia.org/wiki/Unix_philosophy)):
+ > ...at its heart is the idea that the power of a system comes more from
+ > the relationships among programs than from the programs themselves. Many
+ > UNIX programs do quite trivial things in isolation, but, combined with
+ > other programs, become general and useful tools.
 
-Unix ([ref](https://en.wikipedia.org/wiki/Unix_philosophy) ):
-> ...at its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.
 
-Mycket av idéerna som beskrevs stämmer bra in på Anax-MVC, som till exempel att:
+
+Flera av idéerna som beskrevs stämmer bra in på Anax-MVC, som till exempel att:
+
 * pather är routes.
 * hanteringen sköts av controllers.
 * controllers är klasser.
 * actions är metoder.
 
-Det känns positivt att det vi har läst om i kursen är så generellt och att det
-är en vedertagen terminologi och inte något som är specifikt för ett enda system.
+Det känns positivt att det vi har läst om i kursen är så generellt och
+en vedertagen terminologi och inte något som är specifikt för ett enda system.
 
 Själva uppgiften gick ganska smidigt. Jag tog fasta på kommentarerna om att
 kring-arbetet kunde ta mycket tid och valde därför att göra en ganska enkel modul.
@@ -327,20 +332,20 @@ Mitt paket, HTMLTable, kan användas för att skapa en HTML-tabell utifrån en a
 med objekt (till exempel ett sökresultat).
 
 ###Var hittade du inspiration till ditt val av modul och var hittade du kodbasen som du använde?
-Inspirationen kom helt enkelt av att jag har försökt göra ungefär det här i olika
-uppgifter både i htmlphp och oophp. Då har det stupat på att jag tyckte att mina
+Inspirationen kom helt enkelt av att jag har försökt göra ungefär det här under olika
+uppgifter både i `htmlphp` och `oophp`. Då har det stupat på att jag tyckte att mina
 lösningar blev för specialiserade och för hårt knutna till de aktuella uppgifterna
-för att det skulle vara någon mening med dem. Den här gången hade jag tillräckliga
+för att vara generellt användbara. Den här gången hade jag tillräckliga
 kunskaper för att göra en mer generell lösning.
 
 Själva koden är skriven från grunden. Utöver min klass skrev jag två exempel på
 hur man kan använda den. Det ena är en enkel sid-kontroller som man kan kopiera
-in i en webroot på en standard-installation av Anax-MVC för att använda klassen.
+in i `webroot` på en standard-installation av Anax-MVC för att använda klassen.
 Det andra exemplet är en helt fristående sida, som även fick dubblera som test-kod
 för att skapa ett par varianter av tabeller.
 
 ###Hur gick det att utveckla modulen och integrera i ditt ramverk?
-Det gick smidigt i båda fallen. Själva klassen är inte så stor, men jag vill ha
+Det gick smidigt i båda fallen. Själva klassen är inte så stor, men jag ville ha
 tid att skriva en ordentlig README och lite testkod/exempel också. Integrationen
 med Anax gick också enkelt. Klassen i sig har ingen direkt koppling till Anax.
 Det tycker jag är bra eftersom man normalt strävar efter klasser som är så

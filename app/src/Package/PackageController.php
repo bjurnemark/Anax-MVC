@@ -100,12 +100,12 @@ class PackageController implements \Anax\DI\IInjectionAware
 
         // Add feed items to the output (limited to three items)
         foreach ($rss->item as $item) {
+            if($count++ == 3) {
+                return $out;
+            }
             $out .= '<h3>' . $item->title . '</h3>';
             $out .= '<p>'  . $item->description;
             $out .= '<br><a href="' . $item->link . '">Länk</a></p>';
-            if($count++ > 3) {
-                return $out;
-            }
         }
         return $out;    // In case of fewer than 3 elements
     }
