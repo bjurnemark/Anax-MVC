@@ -79,6 +79,7 @@ class UsersController implements \Anax\DI\IInjectionAware
     public function listAction()
     {
         $all = $this->users->findAll();
+        $this->theme->addStylesheet('css/anax-grid/font-awesome-4.5.0/css/font-awesome.min.css');
 
 
         $this->theme->setTitle("Visa alla användare");
