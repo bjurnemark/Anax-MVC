@@ -290,6 +290,88 @@ jag lagt ungefär 35 timmar på det, så det får räcka.
 
 Kmom05: Bygg ut ramverket
 -------------------------
+Det här var ett roligt kursmoment. Skoj att själv få välja vad paketet skulle göra
+och att få arbeta igenom alla stegen med att skapa, testa, dokumentera och publicera
+ett paket.
+
+En del som jag reflekterade över var hur mycket mer tid det tar att komma till en
+nivå där jag vill publicera paketet jämfört med att ha något som jag känns "good enough"
+för eget bruk.
+
+Ett par av argumenten för mikro-ramverk kändes bekanta från filosofin bakom Unix.
+
+Mikro-ramverk:
+> Building small, single-purpose libraries.
+
+> Using small things that work together to solve larger problems.
+
+Unix ([ref](https://en.wikipedia.org/wiki/Unix_philosophy) ):
+> ...at its heart is the idea that the power of a system comes more from the relationships among programs than from the programs themselves. Many UNIX programs do quite trivial things in isolation, but, combined with other programs, become general and useful tools.
+
+Mycket av idéerna som beskrevs stämmer bra in på Anax-MVC, som till exempel att:
+* pather är routes.
+* hanteringen sköts av controllers.
+* controllers är klasser.
+* actions är metoder.
+
+Det känns positivt att det vi har läst om i kursen är så generellt och att det
+är en vedertagen terminologi och inte något som är specifikt för ett enda system.
+
+Själva uppgiften gick ganska smidigt. Jag tog fasta på kommentarerna om att
+kring-arbetet kunde ta mycket tid och valde därför att göra en ganska enkel modul.
+Med facit i hand känns det som rätt beslut. Även om själva utvecklingsarbetet
+gick ganska fort har stegen med att testa, dokumentera och publicera ätit upp
+resten av tiden för kursmomentet.
+
+Mitt paket, HTMLTable, kan användas för att skapa en HTML-tabell utifrån en array
+med objekt (till exempel ett sökresultat).
+
+###Var hittade du inspiration till ditt val av modul och var hittade du kodbasen som du använde?
+Inspirationen kom helt enkelt av att jag har försökt göra ungefär det här i olika
+uppgifter både i htmlphp och oophp. Då har det stupat på att jag tyckte att mina
+lösningar blev för specialiserade och för hårt knutna till de aktuella uppgifterna
+för att det skulle vara någon mening med dem. Den här gången hade jag tillräckliga
+kunskaper för att göra en mer generell lösning.
+
+Själva koden är skriven från grunden. Utöver min klass skrev jag två exempel på
+hur man kan använda den. Det ena är en enkel sid-kontroller som man kan kopiera
+in i en webroot på en standard-installation av Anax-MVC för att använda klassen.
+Det andra exemplet är en helt fristående sida, som även fick dubblera som test-kod
+för att skapa ett par varianter av tabeller.
+
+###Hur gick det att utveckla modulen och integrera i ditt ramverk?
+Det gick smidigt i båda fallen. Själva klassen är inte så stor, men jag vill ha
+tid att skriva en ordentlig README och lite testkod/exempel också. Integrationen
+med Anax gick också enkelt. Klassen i sig har ingen direkt koppling till Anax.
+Det tycker jag är bra eftersom man normalt strävar efter klasser som är så
+oberoende av sin miljö som möjligt. I min egen sid-kontroller som demonstrerar
+klassen återanvände jag User-klassen från förra kursmomentet för att hämta data
+till tabellen.
+
+###Hur gick det att publicera paketet på Packagist?
+Enklare än jag trodde att det skulle bli, faktiskt. Att utgå från en befintlig
+`composer.json` underlättade och guiden på Packagist om hur man kopplar
+till GitHub var tydlig.
+
+###Hur gick det att skriva dokumentationen och testa att modulen fungerade tillsammans med Anax MVC?
+Det gick bra, men det är lätt att underskatta hur mycket tid test och dokumentation
+tar. Jag klonade helt enkelt originalversionen av Anax-MVC till en helt ny folder,
+lade till mitt paket som beroende och installerade det. I det skedet hade jag
+ingen sid-kontroller för att använda min klass, men insåg att det nog var det
+enklaste sättet både att testa installationen och att exemplifiera för andra hur
+den kan användas.
+
+###Gjorde du extrauppgiften? Beskriv i så fall hur du tänkte och vilket resultat du fick.
+Ja. Jag tänkte att det skulle vara intressant att prova att integrera ett helt
+fristående paket, som inte är anpassat för Anax, för att se hur det skulle gå. Det
+blev en enkel RSS/Atom-läsare som inte hade några egna beroenden till andra paket
+för att inte integrationen skulle bli för komplicerad.
+
+Integrationen gick enkelt. Efter att ha lagt till klassen som ett beroende och
+installerat den var det bara att skriva lite kod som använde den.
+
+Både exemplet med mitt egna paket och RSS-paketet ligger samlade på samma menyval
+på min me-sida med lite enkel styling.
 
 Kmom06: Verktyg och CI
 ----------------------
