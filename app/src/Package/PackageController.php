@@ -58,7 +58,7 @@ class PackageController implements \Anax\DI\IInjectionAware
     {
         // Add a description of what's done
         $this->theme->setTitle("Pakethantering");
-        $content  = "<h2>HTMLTable demo</h2>\n";
+        $content  = "<h1>HTMLTable demo</h1>\n";
         $content .= "<p>Tabellen är skapad genom att:<br>\n";
         $content .= "<ol><li>Definiera kolumner och rubriker (<code>CHTMLTable.setColumns</code>)</li>\n";
         $content .= "<li>Hämta data (<code>User.findAll</code>)</li>\n";
@@ -75,9 +75,38 @@ class PackageController implements \Anax\DI\IInjectionAware
         $table->setColumns($this->colDefs);
         $content .= $table->create($users);
 
+        // Add RSS content using an external package
+        $content .= "<h1>RSS-feed</h1>\n";
+        $content .= "<p>RSS-flödet nedan är implementerat med hjälp av paketet <a href='https://packagist.org/packages/dg/rss-php'>dg/rss-php</a>\n";
+        $content .= $this->readFeed('http://www.ttbook.org/book/radio/rss/feed');
+
         // Add view
         $this->views->add('default/blankpage', [
             'content' => $content,
         ]);
+    }
+
+    protected function readFeed($url) {
+        // Read feed
+        $rss = \Feed::loadRss($url);
+
+        $out = "";
+        $count = 0;
+
+        // Add feed information to the output
+        $out .= '<h2>' . $rss->title . '</h2>';
+        $out .= '<p>' . $rss->description;
+        $out .= '<br><a href="' . $rss->link . '">Länk</a></p>';
+
+        // Add feed items to the output (limited to three items)
+        foreach ($rss->item as $item) {
+            $out .= '<h3>' . $item->title . '</h3>';
+            $out .= '<p>'  . $item->description;
+            $out .= '<br><a href="' . $item->link . '">Länk</a></p>';
+            if($count++ > 3) {
+                return $out;
+            }
+        }
+        return $out;    // In case of fewer than 3 elements
     }
 }
