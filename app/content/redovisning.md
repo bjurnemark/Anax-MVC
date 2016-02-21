@@ -380,6 +380,76 @@ på min me-sida med lite enkel styling.
 
 Kmom06: Verktyg och CI
 ----------------------
+Det här kursmomentet var ganska beskedligt. Efter pärsen i kmom04 jämnade det
+ut sig lite nu.
+
+På det stora hela har momentet gått bra. Jag hade några småproblem längs
+vägen, men med hjälp av Google och Stackoverflow löste de sig.
+
+Till att börja med hade den version av phpunit som ingick i min XAMPP installation
+platsat i Antikrundan. Installerad version var 3.6.0 och aktuell
+version 5.2.5. Det var enkelt åtgärdat genom att hämta den aktuella
+versionen med `wget` och ersätta den befintliga filen.
+
+Xdebug verkade krångligare att få igång. Jag började följa installationsguiden
+på deras site, men under processens gång upptäckte jag att `xdebug.so`
+fanns i XAMPP och att det enda som behövdes var en rad i `php.ini` och en
+omstart av Apache. När jag väl sett det gick det enkelt.
+
+Kommandot för att kontrollera code coverage gav felet
+`No whitelist configured, no code coverage will be generated`, men det löste sig
+genom att döpa om `.phpuit.xml` till `phpunit.xml` och köra kommandot som
+`phpunit --bootstrap test/config.php --coverage-html ./report`.
+
+När jag skulle skriva enhetstester för min modul valde jag mellan att göra
+ett mer generellt test (som t ex använder regexp för att kontrollera att den
+returnerade HMTL-koden är korrekt) eller testa på exakta returnerade strängar.
+Det blev tester för exakta matchningar. Fördelen att ha testfall som är
+enkla att skriva och underhålla uppväger nackdelen att de måste
+redigeras om man t ex ändrar formateringen på den returnerade HTML-koden.
+Dessutom blir det ingen risk att felaktig HTML-kod "slinker igenom" p.g.a.
+något fel i regexp.
+
+Min modul har ett par interna hjälp-funktioner som är `protected` och därmed
+inte åtkomliga från testklassen. Men de används från den testade koden och
+kommer därför att ingå i code coverage ändå.
+
+###Var du bekant med några av dessa tekniker innan du började med kursmomentet?
+Inte i detalj. Jag kände till begreppen och hade en ungefärlig uppfattning om
+vad de innebär, men inte mer än så.
+
+###Hur gick det att göra testfall med PHPUnit?
+Ganska bra tycker jag. En begränsning i PHP är att det inte finns "package-scope"
+eller "friend" så att man kan låta testklassen komma åt privata metoder och properties.
+För min modul kom de skyddade metoderna att indirekt ingå i testerna ändå.
+
+###Hur gick det att integrera med Travis?
+Hur smidigt som helst (mycket tack vare den detaljerade guiden på dbwebb).
+Det hade varit mer komplicerat att göra det själv från grunden, men även
+det hade säkert ordnat sig. Jag fick några fel i den första versionen jag försökte
+testa. De äldre versionerna av PHP klarade inte att properties initialiserades med
+konkatenerade strängar. Det löste jag genom att använda HEREDOC.
+
+###Hur gick det att integrera med Scrutinizer?
+Det gick också ganska enkelt. Scrutinizer startade inte av sig själv när jag
+lagt till code-coverage, men jag var nog för otålig när jag startade det manuellt.
+
+###Hur känns det att jobba med dessa verktyg, krångligt, bekvämt, tryggt? Kan du tänka dig att fortsätta använda dem?
+Verktygen i sig känns bekväma. Jag är inte helt såld på enhetstester än. För små
+moduler är jag tveksam om man får utdelning för det extra arbetet, men värdet
+ökar säkert med större projekt.
+
+Det som gör mig tveksam är att jag undrar om enhetstester i den här formen
+egentligen fångar så många fel eller om det bara blir en massa test av saker som
+ändå fungerar.
+
+Argumentet att enhetstester ger trygghet att göra stora förändringar håller jag
+med om, och att testa manuellt blir väldigt enformigt så jag kommer säkert också
+att skriva enhetstester framöver. Som kurslitteraturen argumenterade skriver man
+ju ofta någon form av testkod ändå och då kan man ju lika  gärna ta vara på den.
+
+###Gjorde du extrauppgiften? Beskriv i så fall hur du tänkte och vilket resultat du fick.
+Inte den här gången.
 
 Kmom07/10: Projekt och examination
 ----------------------------------
