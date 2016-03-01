@@ -454,7 +454,9 @@ Inte den här gången.
 Kmom07/10: Projekt och examination
 ----------------------------------
 
-[Projekt](http://www.student.bth.se/~ulbj15/dbwebb-kurser/phpmvc/kmom10/aa-sherlock/webroot/)
+[Projekt på studentservern](http://www.student.bth.se/~ulbj15/dbwebb-kurser/phpmvc/kmom10/aa-sherlock/webroot/)
+
+[Projekt på GitHub](https://github.com/bjurnemark/aa-sherlock)
 
 **Krav 1 - 3 (Grunden)**<br>
 Projektet kändes betydligt mer omfattande än projekten i htmlphp och oophp, med
